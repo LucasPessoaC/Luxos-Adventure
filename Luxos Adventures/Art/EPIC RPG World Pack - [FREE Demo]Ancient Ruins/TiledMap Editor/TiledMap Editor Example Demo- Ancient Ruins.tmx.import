@@ -1,0 +1,18 @@
+[remap]
+
+importer="YATI"
+type="Node2D"
+uid="uid://kq2aac82rlse"
+path="res://.godot/imported/TiledMap Editor Example Demo- Ancient Ruins.tmx-6d1fe52c507f6202e6b4b57870f04151.tscn"
+
+[deps]
+
+source_file="res://Art/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/TiledMap Editor/TiledMap Editor Example Demo- Ancient Ruins.tmx"
+dest_files=["res://.godot/imported/TiledMap Editor Example Demo- Ancient Ruins.tmx-6d1fe52c507f6202e6b4b57870f04151.tscn"]
+
+[params]
+
+use_tilemap_layers=false
+use_default_filter=false
+post_processor=""
+save_tileset_to=""

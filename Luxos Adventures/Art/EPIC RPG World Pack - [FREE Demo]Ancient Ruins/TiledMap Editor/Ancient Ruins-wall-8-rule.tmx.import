@@ -1,0 +1,18 @@
+[remap]
+
+importer="YATI"
+type="Node2D"
+uid="uid://dt1hvciwfx4ii"
+path="res://.godot/imported/Ancient Ruins-wall-8-rule.tmx-cbbe6e370b034040c7b10e964005cf4d.tscn"
+
+[deps]
+
+source_file="res://Art/EPIC RPG World Pack - [FREE Demo]Ancient Ruins/TiledMap Editor/Ancient Ruins-wall-8-rule.tmx"
+dest_files=["res://.godot/imported/Ancient Ruins-wall-8-rule.tmx-cbbe6e370b034040c7b10e964005cf4d.tscn"]
+
+[params]
+
+use_tilemap_layers=false
+use_default_filter=false
+post_processor=""
+save_tileset_to=""

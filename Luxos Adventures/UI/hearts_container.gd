@@ -26,4 +26,10 @@ func updateHearts(currentHealth : int):
 		for i in range(currentHealth, hearts.size()):
 			hearts[i].update(false)
 		
+func damageHearts(currentHealth : int, damage : int):
+	var hearts = get_children()
 	
+	if(currentHealth >= 0):
+		for i in range(currentHealth, hearts.size()):
+			hearts[i].update(false)
+		

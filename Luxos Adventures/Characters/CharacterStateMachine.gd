@@ -9,6 +9,8 @@ var states : Array[State]
 @export var current_state : State
 @export var animation_tree : AnimationTree 
 
+@onready var deathState = $Death
+
 func _ready():
 	for child in get_children():
 		if(child is State):
@@ -17,7 +19,6 @@ func _ready():
 			child.character = character
 			child.velocity = character.get("velocity")
 			child.playback = animation_tree["parameters/playback"]
-			
 			#connect to interrupt signal
 			child.connect("interrupt_state", on_state_interrupt_state)
 			
@@ -52,3 +53,9 @@ func _input(event : InputEvent):
 	
 func on_state_interrupt_state(new_state : State):
 	switch_states(new_state)
+
+
+func _on_player_main_zero_health():
+	on_state_interrupt_state(deathState)
+	$Death.dead()
+

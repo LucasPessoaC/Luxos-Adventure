@@ -1,72 +1,16 @@
-[gd_scene load_steps=35 format=3 uid="uid://dtv7gthpxu26v"]
+[gd_scene load_steps=25 format=3 uid="uid://dtv7gthpxu26v"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/Skeleton.gd" id="1_2v8fp"]
 [ext_resource type="Texture2D" uid="uid://creq0hrqj4hbx" path="res://Art/Skeleton/Sprite Sheets/Skeleton Dead.png" id="1_acuyk"]
 [ext_resource type="Texture2D" uid="uid://brmcg0s5ehjc3" path="res://Art/Skeleton/Sprite Sheets/Skeleton Idle.png" id="1_de217"]
-[ext_resource type="Texture2D" uid="uid://bjdblj7ka32rk" path="res://Art/Skeleton/Sprite Sheets/Skeleton Attack.png" id="2_it1wh"]
 [ext_resource type="Script" path="res://Characters/Enemies/Damageable.gd" id="2_odowx"]
 [ext_resource type="Texture2D" uid="uid://lcadeawbhgb3" path="res://Art/Skeleton/Sprite Sheets/Skeleton Walk.png" id="4_b6rbr"]
 [ext_resource type="Script" path="res://Characters/CharacterStateMachine.gd" id="4_m3gke"]
 [ext_resource type="Script" path="res://Characters/State.gd" id="5_3utb7"]
 [ext_resource type="Script" path="res://Characters/Hit.gd" id="6_tcllt"]
-[ext_resource type="Script" path="res://Characters/Enemies/Attacking.gd" id="10_3eor7"]
-[ext_resource type="Script" path="res://Characters/Enemies/WeaponArea.gd" id="11_bi720"]
-[ext_resource type="Script" path="res://Characters/Enemies/CollisionPolygon2D.gd" id="12_biwkb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0w5v"]
-size = Vector2(15, 28)
-
-[sub_resource type="Animation" id="Animation_0frw5"]
-resource_name = "Attack"
-length = 1.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_it1wh")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [18]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WeaponArea:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
+size = Vector2(13.1667, 27.1667)
 
 [sub_resource type="Animation" id="Animation_jul7e"]
 resource_name = "Death"
@@ -207,15 +151,11 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ve4up"]
 _data = {
-"Attack": SubResource("Animation_0frw5"),
 "Death": SubResource("Animation_jul7e"),
 "Idle": SubResource("Animation_gyrtf"),
 "RESET": SubResource("Animation_xlgja"),
 "walk": SubResource("Animation_g3q3q")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tilnk"]
-animation = &"Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6cewx"]
 animation = &"Death"
@@ -237,31 +177,21 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05krq"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m4oqu"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wef0q"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u403t"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_okw2h"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ofh60"]
-states/AttackS/node = SubResource("AnimationNodeAnimation_tilnk")
-states/AttackS/position = Vector2(423, 199)
 states/Death/node = SubResource("AnimationNodeAnimation_6cewx")
 states/Death/position = Vector2(688, 105)
 states/Idle/node = SubResource("AnimationNodeAnimation_luwos")
-states/Idle/position = Vector2(414, 92)
+states/Idle/position = Vector2(449, 105)
 states/Start/position = Vector2(200, 105)
 states/walk/node = SubResource("AnimationNodeAnimation_4kw2e")
-states/walk/position = Vector2(632, 193)
-transitions = ["walk", "Death", SubResource("AnimationNodeStateMachineTransition_3sx6x"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lcd1x"), "Idle", "walk", SubResource("AnimationNodeStateMachineTransition_5orfe"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_okpa0"), "walk", "Idle", SubResource("AnimationNodeStateMachineTransition_05krq"), "Idle", "AttackS", SubResource("AnimationNodeStateMachineTransition_m4oqu"), "walk", "AttackS", SubResource("AnimationNodeStateMachineTransition_wef0q"), "AttackS", "walk", SubResource("AnimationNodeStateMachineTransition_u403t"), "AttackS", "Idle", SubResource("AnimationNodeStateMachineTransition_okw2h")]
-graph_offset = Vector2(-136, 47)
+states/walk/position = Vector2(565, 177)
+transitions = ["walk", "Death", SubResource("AnimationNodeStateMachineTransition_3sx6x"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lcd1x"), "Idle", "walk", SubResource("AnimationNodeStateMachineTransition_5orfe"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_okpa0"), "walk", "Idle", SubResource("AnimationNodeStateMachineTransition_05krq")]
+graph_offset = Vector2(-44, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4l74"]
 size = Vector2(14.6667, 25.6667)
 
-[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "attack_state", "nav_agent")]
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "nav_agent")]
 position = Vector2(273, 185)
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
@@ -271,19 +201,19 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_2v8fp")
 hit_state = NodePath("CharacterStateMachine/Hit")
 dead_state = NodePath("CharacterStateMachine/Dead")
-attack_state = NodePath("CharacterStateMachine/Attacking")
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.75, 4.33325)
+position = Vector2(4.58334, 3.58334)
 shape = SubResource("RectangleShape2D_k0w5v")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_de217")
+texture = ExtResource("4_b6rbr")
 flip_h = true
-hframes = 11
+hframes = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -292,11 +222,11 @@ libraries = {
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("2_odowx")
+health = 500
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ofh60")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
 script = ExtResource("4_m3gke")
@@ -320,16 +250,8 @@ character_state_machine = NodePath("..")
 return_state = NodePath("../Idle")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
-
-[node name="Attacking" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "attack_state", "enemy")]
-script = ExtResource("10_3eor7")
-idle_state = NodePath("../Idle")
-attack_state = NodePath(".")
-enemy = NodePath("../..")
-
-[node name="AttackTimer" type="Timer" parent="CharacterStateMachine/Attacking"]
 
 [node name="TimerSkeleton" type="Timer" parent="."]
 wait_time = 0.1
@@ -342,28 +264,11 @@ position = Vector2(3.33334, 4.16666)
 shape = SubResource("RectangleShape2D_i4l74")
 
 [node name="LineOfsight" type="RayCast2D" parent="."]
-position = Vector2(3.33335, 13.3333)
-target_position = Vector2(150, 0)
+z_as_relative = false
+target_position = Vector2(70, 0)
 collision_mask = 3
-
-[node name="WeaponArea" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "facing_shape")]
-collision_layer = 4
-collision_mask = 2
-monitoring = false
-script = ExtResource("11_bi720")
-enemy = NodePath("..")
-facing_shape = NodePath("CollisionPolygon2D")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WeaponArea"]
-position = Vector2(0.666672, -1.33334)
-build_mode = 1
-polygon = PackedVector2Array(-4.66666, 18.6667, -10.6667, 20.6667, -21.3333, 23.3333, -24, 16.6667, -24.6667, 6.00001, -25.3333, -9.33334, -20, -16, -12.6667, -22.6667, -7.33333, -25.3333, 4.66667, -26, 16, -24, 22.6667, -19.3333, 22, -8, 11.3333, -8, 3.33334, -8.66666, -4.66666, -4.66666, -4.66666, 1.33334)
-script = ExtResource("12_biwkb")
-facing_left_position = Vector2(-5, 2)
-facing_rigth_position = Vector2(5, 2)
+hit_from_inside = true
 
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attacking" method="_on_animation_tree_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerSkeleton" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="WeaponArea" to="WeaponArea" method="_on_body_entered"]

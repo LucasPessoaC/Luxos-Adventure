@@ -2,6 +2,8 @@ extends Panel
 
 @onready var sprite = $Sprite2D
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,3 +27,6 @@ func update(whole : bool, remainingHealth : int = 100):
 		elif(remainingHealth <= 0):
 			sprite.frame = 4
 		
+
+func updateText(string : String):
+	self.tooltip_text = string

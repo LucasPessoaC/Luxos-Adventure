@@ -1715,20 +1715,29 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("10_r7ts0")]
-offset_left = 58.0
-offset_top = 35.0
-offset_right = -1014.0
-offset_bottom = -597.0
-scale = Vector2(2, 2)
-tooltip_text = "aaa"
-mouse_filter = 0
-
 [node name="Backpack" parent="CanvasLayer" instance=ExtResource("12_bmpy3")]
 offset_left = 39.0
 offset_top = -1.0
 offset_right = 39.0
 offset_bottom = -1.0
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeartsContainer" parent="CanvasLayer/Control" instance=ExtResource("10_r7ts0")]
+custom_minimum_size = Vector2(80, 16)
+layout_mode = 1
+offset_left = 58.0
+offset_top = 35.0
+offset_right = -1014.0
+offset_bottom = -597.0
+scale = Vector2(2, 2)
+mouse_filter = 0
 
 [node name="Skeleton2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
 position = Vector2(259, 175)

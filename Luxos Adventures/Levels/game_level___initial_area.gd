@@ -1,11 +1,11 @@
 extends Node2D
 
-@onready var heartContainer = $CanvasLayer/HeartsContainer
+@onready var heartContainer = $CanvasLayer/Control/HeartsContainer
 @onready var player = $Player_Main
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	heartContainer.setMaxHearts(player.maxHealth/20)
-	heartContainer.updateHearts(player.current_health)
+	heartContainer.updateHearts(player.current_health, player.health)
 	player.wasAttacked.connect(heartContainer.damageTaken)
 	
 

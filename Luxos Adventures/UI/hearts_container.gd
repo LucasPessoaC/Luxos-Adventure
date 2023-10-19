@@ -17,24 +17,27 @@ func setMaxHearts(maxx : int):
 		add_child(heart)
 		
 		
-func updateHearts(currentHealth : int):
+func updateHearts(currentHealth : int, heatlh : int):
 	var hearts = get_children()
 	for i in range(currentHealth):
 		hearts[i].update(true)
+		hearts[i].updateText(str(heatlh))
 		
 		
-func damageHearts(currentHealth : int, damage : int):
-	var hearts = get_children()
-	
-	if(currentHealth >= 0):
-		hearts[currentHealth].update(false)
+		
+#func damageHearts(currentHealth : int, damage : int):
+#	var hearts = get_children()
+#
+#	if(currentHealth >= 0):
+#		hearts[currentHealth].update(false)
 	
 
 func damageTaken(currentHealth : int, damage : int):
 		var newHeatlh = currentHealth - damage
+		var health = newHeatlh
 		var hearts = get_children()
-		
 		for i in range(hearts.size()):
+			hearts[i].updateText(str(health))
 			if(newHeatlh >= 20):
 				hearts[i].update(true)
 				newHeatlh -= 20

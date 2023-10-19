@@ -11,8 +11,8 @@ func _process(delta):
 	pass
 
 
-func setMaxHearts(max : int):
-	for i in range(max):
+func setMaxHearts(maxx : int):
+	for i in range(maxx):
 		var heart = HeartGuiClass.instantiate()
 		add_child(heart)
 		
@@ -22,14 +22,26 @@ func updateHearts(currentHealth : int):
 	for i in range(currentHealth):
 		hearts[i].update(true)
 		
-	if(currentHealth >= 0):
-		for i in range(currentHealth, hearts.size()):
-			hearts[i].update(false)
 		
 func damageHearts(currentHealth : int, damage : int):
 	var hearts = get_children()
 	
 	if(currentHealth >= 0):
-		for i in range(currentHealth, hearts.size()):
-			hearts[i].update(false)
+		hearts[currentHealth].update(false)
+	
+
+func damageTaken(currentHealth : int, damage : int):
+		var newHeatlh = currentHealth - damage
+		var hearts = get_children()
 		
+		for i in range(hearts.size()):
+			if(newHeatlh >= 20):
+				hearts[i].update(true)
+				newHeatlh -= 20
+			elif(newHeatlh >= 0):
+				hearts[i].update(false, newHeatlh)
+				newHeatlh = 0
+			else:
+				hearts[i].update(false, newHeatlh)
+		
+	

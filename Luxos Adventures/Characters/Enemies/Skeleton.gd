@@ -11,16 +11,14 @@ enum SKELETON_STATE{IDLE, WALK}
 @export var dead_state : State
 @export var attack_state : State
 
-@export var idle_time : float = 2
-@export var walk_time : float = 3
-
 @onready var los = $LineOfsight
-
 @export var player: Node2D
 @export var nav_agent: NavigationAgent2D
 
-
 @onready var sprite : Sprite2D = $Sprite2D
+@onready var collision : CollisionShape2D = $CollisionShape2D
+@onready var collisionHitBox : CollisionShape2D = $HitBox/HitBoxShape
+
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var states_machine = animation_tree.get("parameters/playback")
 @onready var timer = $TimerSkeleton
@@ -72,8 +70,13 @@ func _physics_process(_delta: float):
 			velocity.y = dir.y * speed
 			if(velocity.x > 0):
 				sprite.flip_h = false
+				collision.position.x = -11.333
+				collisionHitBox.position.x = -10
 			else:
 				sprite.flip_h = true
+				collision.position.x = 5.3333
+				collisionHitBox.position.x = 5.3333
+				
 				
 		
 	else:

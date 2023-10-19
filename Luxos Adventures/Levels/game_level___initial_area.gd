@@ -4,9 +4,9 @@ extends Node2D
 @onready var player = $Player_Main
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	heartContainer.setMaxHearts(player.maxHealth/25)
+	heartContainer.setMaxHearts(player.maxHealth/20)
 	heartContainer.updateHearts(player.current_health)
-	player.healthChanged.connect(heartContainer.damageHearts)
+	player.wasAttacked.connect(heartContainer.damageTaken)
 	
 
 

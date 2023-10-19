@@ -11,9 +11,17 @@ func _ready():
 func _process(delta):
 	pass
 
-func update(whole : bool):
+func update(whole : bool, remainingHealth : int = 100):
 	if whole: 
 		sprite.frame = 0
 	else:
-		sprite.frame += 1
+		remainingHealth = (remainingHealth*100)/20
+		if(remainingHealth <= 75 && remainingHealth > 50):
+			sprite.frame = 1
+		elif(remainingHealth <= 50 && remainingHealth > 25):
+			sprite.frame = 2
+		elif(remainingHealth <= 25 && remainingHealth > 0):
+			sprite.frame = 3
+		elif(remainingHealth <= 0):
+			sprite.frame = 4
 		

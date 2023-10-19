@@ -12,6 +12,7 @@ class_name HitState
 @export var knockback_velocity : float = 600.0
 @export var return_state : State
 @onready var timer : Timer = $Timer
+@onready var hitBox = $"../../HitBox"
 
 func _ready():
 	damageable.connect("on_hit", on_damageable_hit)
@@ -35,6 +36,7 @@ func on_damageable_hit(node : Node, damage_amount : int, knockback_direction : V
 		character.velocity = Vector2.ZERO
 		emit_signal("interrupt_state", dead_state)
 		playback.travel(dead_animation_node)
+		hitBox.queue_free()
 		
 
 func _on_timer_timeout():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dl0sk1hax0s5n"]
+[gd_scene load_steps=57 format=3 uid="uid://dl0sk1hax0s5n"]
 
 [ext_resource type="Texture2D" uid="uid://cqbhojh3u6qrn" path="res://Art/Adventurer-1.5/adventurer-v1.5-Sheet.png" id="1_ipo6y"]
 [ext_resource type="Script" path="res://Characters/player_main.gd" id="1_kaixh"]
@@ -352,10 +352,50 @@ _data = {
 "run_right": SubResource("Animation_3otee")
 }
 
+[sub_resource type="Animation" id="Animation_sd04y"]
+resource_name = "Blink"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.811765), Color(1, 1, 1, 0.54902)]
+}
+
+[sub_resource type="Animation" id="Animation_4pvn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.988235, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ue3m2"]
+_data = {
+"Blink": SubResource("Animation_sd04y"),
+"RESET": SubResource("Animation_4pvn3")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26l74"]
 size = Vector2(24.5, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnnj"]
+size = Vector2(22, 29)
 
 [node name="Player_Main" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -363,9 +403,17 @@ collision_mask = 5
 script = ExtResource("1_kaixh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 2
 texture = ExtResource("1_ipo6y")
 hframes = 7
 vframes = 16
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+modulate = Color(0.988235, 0, 0, 0)
+offset_left = -17.0
+offset_top = -16.0
+offset_right = 23.0
+offset_bottom = 24.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 9)
@@ -381,6 +429,11 @@ parameters/run/blend_position = Vector2(-1, 0.00480354)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mm6yq")
+}
+
+[node name="HurtEffect" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ue3m2")
 }
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
@@ -425,22 +478,30 @@ player = NodePath("..")
 facing_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
-position = Vector2(17, 0)
+position = Vector2(21, 0)
 shape = SubResource("RectangleShape2D_26l74")
 script = ExtResource("8_qgjye")
 facing_left_position = Vector2(-20, 3)
 facing_rigth_position = Vector2(20, -3)
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, 4.5)
 shape = SubResource("RectangleShape2D_5dnnj")
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("10_r8ejl")
 health = 100
 
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="zeroHealth" from="." to="CharacterStateMachine" method="_on_player_main_zero_health"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attacking" method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]

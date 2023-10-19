@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Characters/Enemies/CollisionPolygon2D.gd" id="12_biwkb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0w5v"]
-size = Vector2(15, 28)
+size = Vector2(16.1667, 26.6667)
 
 [sub_resource type="Animation" id="Animation_0frw5"]
 resource_name = "Attack"
@@ -111,7 +111,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_gyrtf"]
 resource_name = "Idle"
 length = 1.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -259,12 +258,12 @@ transitions = ["walk", "Death", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-136, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4l74"]
-size = Vector2(14.6667, 25.6667)
+size = Vector2(18.6667, 28)
 
 [node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "attack_state", "nav_agent")]
 position = Vector2(273, 185)
 scale = Vector2(1.5, 1.5)
-collision_layer = 4
+collision_layer = 5
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -275,28 +274,28 @@ attack_state = NodePath("CharacterStateMachine/Attacking")
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.75, 4.33325)
+position = Vector2(5.25, 4.66666)
 shape = SubResource("RectangleShape2D_k0w5v")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_de217")
+texture = ExtResource("2_it1wh")
 flip_h = true
-hframes = 11
+hframes = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ve4up")
 }
 
-[node name="Damageable" type="Node" parent="."]
-script = ExtResource("2_odowx")
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ofh60")
 anim_player = NodePath("../AnimationPlayer")
 active = true
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_odowx")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
 script = ExtResource("4_m3gke")
@@ -336,15 +335,12 @@ wait_time = 0.1
 autostart = true
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 3
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(3.33334, 4.16666)
+position = Vector2(5.33334, 4.66666)
 shape = SubResource("RectangleShape2D_i4l74")
-
-[node name="LineOfsight" type="RayCast2D" parent="."]
-position = Vector2(3.33335, 13.3333)
-target_position = Vector2(150, 0)
-collision_mask = 3
 
 [node name="WeaponArea" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "facing_shape")]
 collision_layer = 4
@@ -361,6 +357,11 @@ polygon = PackedVector2Array(-4.66666, 18.6667, -10.6667, 20.6667, -21.3333, 23.
 script = ExtResource("12_biwkb")
 facing_left_position = Vector2(-5, 2)
 facing_rigth_position = Vector2(5, 2)
+
+[node name="LineOfsight" type="RayCast2D" parent="."]
+position = Vector2(3.33336, 13.3333)
+target_position = Vector2(150, 0)
+collision_mask = 3
 
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attacking" method="_on_animation_tree_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d1mvmgncxe4mp"]
+[gd_scene load_steps=22 format=3 uid="uid://d1mvmgncxe4mp"]
 
 [ext_resource type="PackedScene" uid="uid://dl0sk1hax0s5n" path="res://Characters/player_main.tscn" id="1_bbgn8"]
 [ext_resource type="Script" path="res://Levels/game_level___initial_area.gd" id="1_tplx5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dtv7gthpxu26v" path="res://Characters/Enemies/Skeleton.tscn" id="8_i3txu"]
 [ext_resource type="PackedScene" uid="uid://416lwgf32j8h" path="res://UI/health_changed_manager.tscn" id="9_0f2b3"]
 [ext_resource type="PackedScene" uid="uid://g006g7eqjrqd" path="res://UI/hearts_container.tscn" id="10_r7ts0"]
+[ext_resource type="PackedScene" uid="uid://boyyuxcxdhd6b" path="res://UI/backpack.tscn" id="12_bmpy3"]
 
 [sub_resource type="GDScript" id="GDScript_nrvi2"]
 script/source = "extends TileSet
@@ -1720,6 +1721,14 @@ offset_top = 35.0
 offset_right = -1014.0
 offset_bottom = -597.0
 scale = Vector2(2, 2)
+tooltip_text = "aaa"
+mouse_filter = 0
+
+[node name="Backpack" parent="CanvasLayer" instance=ExtResource("12_bmpy3")]
+offset_left = 39.0
+offset_top = -1.0
+offset_right = 39.0
+offset_bottom = -1.0
 
 [node name="Skeleton2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
 position = Vector2(259, 175)

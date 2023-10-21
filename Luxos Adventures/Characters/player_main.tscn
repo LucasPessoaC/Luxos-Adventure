@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://dl0sk1hax0s5n"]
+[gd_scene load_steps=58 format=3 uid="uid://dl0sk1hax0s5n"]
 
 [ext_resource type="Texture2D" uid="uid://cqbhojh3u6qrn" path="res://Art/Adventurer-1.5/adventurer-v1.5-Sheet.png" id="1_ipo6y"]
 [ext_resource type="Script" path="res://Characters/player_main.gd" id="1_kaixh"]
+[ext_resource type="Resource" uid="uid://3geolf6fn88x" path="res://Inventory/Items/playerInventory.tres" id="2_himnv"]
 [ext_resource type="Script" path="res://Characters/CharacterStateMachine.gd" id="3_ghx3x"]
 [ext_resource type="Script" path="res://Characters/Attacking.gd" id="4_tfees"]
 [ext_resource type="Script" path="res://Characters/Idle.gd" id="5_tmspv"]
@@ -135,7 +136,7 @@ graph_offset = Vector2(-241.867, -4)
 
 [sub_resource type="Animation" id="Animation_32s8g"]
 resource_name = "Attack_1"
-length = 0.85
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,7 +144,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"times": PackedFloat32Array(0, 0.0302707, 0.0604759, 0.090357, 0.120326, 0.150144, 0.180413, 0.210382, 0.2402),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [41, 42, 43, 44, 45, 46, 47, 48, 49]
@@ -179,7 +180,7 @@ tracks/3/path = NodePath("Sword:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.3, 0.4),
+"times": PackedFloat32Array(0.0090698, 0.0998749, 0.165259),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -187,7 +188,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_y8mf3"]
 resource_name = "Attack_2"
-length = 0.4
+length = 0.28
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -195,7 +196,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.0605159, 0.141585, 0.201019),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [49, 50, 51, 52]
@@ -207,7 +208,7 @@ tracks/1/path = NodePath("Sword:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.0621385, 0.157271),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -215,7 +216,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_t6o0l"]
 resource_name = "Attack_3"
-length = 0.55
+length = 0.51
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -401,6 +402,7 @@ size = Vector2(22, 29)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_kaixh")
+inventory = ExtResource("2_himnv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
@@ -445,6 +447,7 @@ animation_tree = NodePath("../AnimationTree")
 [node name="Attacking" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state")]
 script = ExtResource("4_tfees")
 return_state = NodePath("../Idle")
+can_move = true
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Attacking"]
 process_callback = 0

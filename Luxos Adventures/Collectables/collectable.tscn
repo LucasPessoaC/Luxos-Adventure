@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://6uvpi2672rf4"]
+
+[ext_resource type="Script" path="res://Collectables/Collectable.gd" id="1_l8app"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6g6kp"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6bge"]
+bg_color = Color(0, 0, 0, 0.45098)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.917647, 0.694118, 0, 1)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Collectable" type="Area2D"]
+script = ExtResource("1_l8app")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6g6kp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -65.0
+offset_top = -46.0
+offset_right = 110.0
+offset_bottom = 8.0
+scale = Vector2(0.75, 0.75)
+theme_override_styles/normal = SubResource("StyleBoxFlat_d6bge")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://cpq72bnmky2db"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="1_777mx"]
+[ext_resource type="Texture2D" uid="uid://m048xo3fu5eq" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/bone01a.png" id="2_7nqqd"]
+
+[resource]
+script = ExtResource("1_777mx")
+name = "Bone"
+texture = ExtResource("2_7nqqd")

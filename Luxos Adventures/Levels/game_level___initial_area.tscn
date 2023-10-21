@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1mvmgncxe4mp"]
+[gd_scene load_steps=30 format=3 uid="uid://d1mvmgncxe4mp"]
 
 [ext_resource type="PackedScene" uid="uid://dl0sk1hax0s5n" path="res://Characters/player_main.tscn" id="1_bbgn8"]
 [ext_resource type="Script" path="res://Levels/game_level___initial_area.gd" id="1_tplx5"]
@@ -10,8 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://b1yxdq8b7jac3" path="res://Art/Pixel Art Top Down - Basic/Texture/TX Plant.png" id="7_1dk0g"]
 [ext_resource type="PackedScene" uid="uid://dtv7gthpxu26v" path="res://Characters/Enemies/Skeleton.tscn" id="8_i3txu"]
 [ext_resource type="PackedScene" uid="uid://416lwgf32j8h" path="res://UI/health_changed_manager.tscn" id="9_0f2b3"]
+[ext_resource type="PackedScene" uid="uid://cywjo3j7co8fd" path="res://Collectables/bone.tscn" id="9_pa1o8"]
+[ext_resource type="PackedScene" uid="uid://vg1oupy2oedf" path="res://Collectables/blue_platinum_coin.tscn" id="10_mww21"]
 [ext_resource type="PackedScene" uid="uid://g006g7eqjrqd" path="res://UI/hearts_container.tscn" id="10_r7ts0"]
+[ext_resource type="PackedScene" uid="uid://chedc0h5oht6w" path="res://Collectables/copper_coin.tscn" id="11_s6dd7"]
 [ext_resource type="PackedScene" uid="uid://boyyuxcxdhd6b" path="res://UI/backpack.tscn" id="12_bmpy3"]
+[ext_resource type="PackedScene" uid="uid://b1ciy3ojugtr4" path="res://Collectables/gold_coin.tscn" id="12_uufet"]
+[ext_resource type="PackedScene" uid="uid://cbnwedcuhmwsx" path="res://Collectables/silver_coin.tscn" id="13_qd2f4"]
+[ext_resource type="Script" path="res://Levels/CanvasLayer.gd" id="16_js8wc"]
+[ext_resource type="PackedScene" uid="uid://c1fgsss4f8447" path="res://UI/inventory_gui.tscn" id="18_uvvx1"]
 
 [sub_resource type="GDScript" id="GDScript_nrvi2"]
 script/source = "extends TileSet
@@ -1614,6 +1621,14 @@ texture_region_size = Vector2i(32, 32)
 0:15/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:15/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_b7bov"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("9_pa1o8")
+scenes/2/scene = ExtResource("10_mww21")
+scenes/3/scene = ExtResource("11_s6dd7")
+scenes/4/scene = ExtResource("12_uufet")
+scenes/5/scene = ExtResource("13_qd2f4")
+
 [sub_resource type="TileSet" id="TileSet_wfmw4"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -1625,6 +1640,7 @@ sources/2 = SubResource("TileSetAtlasSource_h4as3")
 sources/3 = SubResource("TileSetAtlasSource_kl244")
 sources/4 = SubResource("TileSetAtlasSource_eed0h")
 sources/5 = SubResource("TileSetAtlasSource_ufuwl")
+sources/6 = SubResource("TileSetScenesCollectionSource_b7bov")
 script = SubResource("GDScript_nrvi2")
 
 [node name="Game Level - Initial Area" type="Node2D"]
@@ -1698,6 +1714,13 @@ layer_7/y_sort_enabled = true
 layer_7/y_sort_origin = 100
 layer_7/z_index = 0
 layer_7/tile_data = PackedInt32Array(393241, 5, 1, 458777, 5, 2, 524313, 5, 3, 589849, 5, 4, 327706, 65541, 0, 393242, 65541, 1, 458778, 65541, 2, 524314, 65541, 3, 589850, 65541, 4, 327707, 131077, 0, 393243, 131077, 1, 458779, 131077, 2, 524315, 131077, 3, 589851, 131077, 4, 327708, 196613, 0, 393244, 196613, 1, 458780, 196613, 2, 524316, 196613, 3, 589852, 196613, 4, 393245, 262149, 1, 458781, 262149, 2, 524317, 262149, 3, 589853, 262149, 4, 720922, 655365, 6, 720923, 720901, 6, 720924, 786437, 6, 65562, 589829, 1, 131098, 589829, 2, 196634, 589829, 3, 262170, 589829, 4, 65563, 655365, 1, 131099, 655365, 2, 196635, 655365, 3, 262171, 655365, 4, 65564, 720901, 1, 131100, 720901, 2, 196636, 720901, 3, 262172, 720901, 4)
+layer_8/name = "collectables"
+layer_8/enabled = true
+layer_8/modulate = Color(1, 1, 1, 1)
+layer_8/y_sort_enabled = true
+layer_8/y_sort_origin = 0
+layer_8/z_index = 1
+layer_8/tile_data = PackedInt32Array(524292, 6, 65536, 458746, 6, 65536, 589817, 6, 65536, 393213, 6, 65536, 458751, 6, 65536, 262144, 6, 65536, 589820, 6, 131072, 589822, 6, 131072, 655359, 6, 131072)
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1710,10 +1733,28 @@ drag_vertical_enabled = true
 position = Vector2(-119, 344)
 player = NodePath("../Player_Main")
 
+[node name="Skeleton2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
+position = Vector2(259, 175)
+player = NodePath("../Player_Main")
+
+[node name="Skeleton3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
+position = Vector2(133, 276)
+player = NodePath("../Player_Main")
+
+[node name="Skeleton4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
+position = Vector2(242, -77)
+player = NodePath("../Player_Main")
+
+[node name="Skeleton5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
+position = Vector2(108, -223)
+player = NodePath("../Player_Main")
+
 [node name="HealthChangedManager" parent="." instance=ExtResource("9_0f2b3")]
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("16_js8wc")
 
 [node name="Backpack" parent="CanvasLayer" instance=ExtResource("12_bmpy3")]
 offset_left = 39.0
@@ -1739,18 +1780,19 @@ offset_bottom = -597.0
 scale = Vector2(2, 2)
 mouse_filter = 0
 
-[node name="Skeleton2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
-position = Vector2(259, 175)
-player = NodePath("../Player_Main")
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("18_uvvx1")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -50.0
+offset_right = 80.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
 
-[node name="Skeleton3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
-position = Vector2(133, 276)
-player = NodePath("../Player_Main")
-
-[node name="Skeleton4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
-position = Vector2(242, -77)
-player = NodePath("../Player_Main")
-
-[node name="Skeleton5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_i3txu")]
-position = Vector2(108, -223)
-player = NodePath("../Player_Main")
+[connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
+[connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

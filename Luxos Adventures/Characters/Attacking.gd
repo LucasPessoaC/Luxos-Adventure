@@ -13,11 +13,11 @@ extends State
 
 @onready var timer : Timer = $Timer
 
+
 func state_input(event : InputEvent):
 	if(event.is_action_pressed("attack")):
 		if(timer.is_stopped()):
-			playback.travel(attack1_name)
-		timer.start()
+			timer.start()
 		
 
 

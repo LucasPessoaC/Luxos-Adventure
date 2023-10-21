@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://vg1oupy2oedf"]
+
+[ext_resource type="PackedScene" uid="uid://6uvpi2672rf4" path="res://Collectables/collectable.tscn" id="1_cvlwo"]
+[ext_resource type="Resource" uid="uid://cptxg0k8q0pho" path="res://Inventory/Items/Blue_platinum_coin.tres" id="2_0jaqs"]
+[ext_resource type="Texture2D" uid="uid://caau7d06e4kb5" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/coin_01e.png" id="2_t2pxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5g62"]
+resource_local_to_scene = true
+size = Vector2(17, 12)
+
+[node name="Blue Platinum Coin" instance=ExtResource("1_cvlwo")]
+itemRes = ExtResource("2_0jaqs")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_v5g62")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(1, 1)
+texture = ExtResource("2_t2pxd")
+
+[node name="Label" parent="." index="2"]
+visible = true
+offset_left = -66.0
+offset_top = -27.0
+offset_right = 109.0
+offset_bottom = 1.0
+text = "Blue Platinum Coin"

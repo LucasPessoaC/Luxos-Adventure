@@ -6,6 +6,7 @@ class_name Player
 @export var move_speed : float = 100
 @export var knockback_velocity : float = 1500.0
 @export var starting_direction : Vector2 = Vector2(0, 1)
+@export var inventory: Inventory
 
 @onready var animation_tree = $AnimationTree
 
@@ -23,9 +24,9 @@ class_name Player
 
 @onready var death_State = character_state_machine.find_child("Death", true, false)
 @onready var isHitted : bool
+@onready var hurtBox = $HurtBox
 var hitted : bool = false
 
-var collisions = []
 var count : int = 0 
 
 signal facing_direction_changed(facing_right : bool)
@@ -67,8 +68,9 @@ func _physics_process(delta):
 	handleColision()
 	isHitted = false
 	if !hitted:
-		for enemyarea in collisions:
-			hurtByEnemy(enemyarea)
+		for area in hurtBox.get_overlapping_areas():
+			if area.name == "HitBox":
+				hurtByEnemy(area)
 	
 
 func handleColision():
@@ -86,14 +88,14 @@ func on_hit(node : Node, damage_taken : int, knockback_direction : Vector2):
 	velocity = knockback_velocity * knockback_direction
 	wasAttacked.emit(health,damage_taken)
 	health = health - damage_taken
-	if(health <= 0 && character_state_machine.current_state != death_State):
-		emit_signal("zeroHealth")
-		health = health - 10
 	hitEffect.play("Blink")
 	hurtTimer.start()
 	await hurtTimer.timeout
 	hitEffect.play("RESET")
 	isHitted = false
+	if(health <= 0 && character_state_machine.current_state != death_State):
+		emit_signal("zeroHealth")
+		health = health - 10
 	
 	
 func hurtByEnemy(area):
@@ -110,9 +112,8 @@ func hurtByEnemy(area):
 
 
 func _on_hurt_box_area_entered(area):
-	if area.name == "HitBox":
-		collisions.append(area)
+	if area.has_method("collect"):
+		area.collect(inventory)
 
 
-func _on_hurt_box_area_exited(area):
-	collisions.erase(area) # Replace with function body.
+func _on_hurt_box_area_exited(area): pass

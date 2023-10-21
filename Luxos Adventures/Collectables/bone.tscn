@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cywjo3j7co8fd"]
+
+[ext_resource type="PackedScene" uid="uid://6uvpi2672rf4" path="res://Collectables/collectable.tscn" id="1_ov2p3"]
+[ext_resource type="Texture2D" uid="uid://m048xo3fu5eq" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/bone01a.png" id="2_bbgbx"]
+[ext_resource type="Resource" uid="uid://cpq72bnmky2db" path="res://Inventory/Items/bone.tres" id="2_mg21p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1j5gd"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
+[node name="Bone" instance=ExtResource("1_ov2p3")]
+itemRes = ExtResource("2_mg21p")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_1j5gd")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(0.75, 0.8125)
+texture = ExtResource("2_bbgbx")
+
+[node name="Label" parent="." index="2"]
+visible = true
+offset_left = -27.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = -1.0
+text = "Bones
+"

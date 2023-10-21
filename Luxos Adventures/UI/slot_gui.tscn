@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmn6j2x0juu0w"]
+
+[ext_resource type="Script" path="res://UI/slot_gui.gd" id="1_38pr5"]
+[ext_resource type="Texture2D" uid="uid://c0sly216bdtf4" path="res://Art/Free Inventory/Free Inventory/Inventory_Slot.png" id="1_ktsat"]
+[ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="3_a1iaw"]
+[ext_resource type="Script" path="res://Inventory/drag.gd" id="3_hnesk"]
+
+[node name="Slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("1_38pr5")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_ktsat")
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+mouse_filter = 0
+expand_mode = 1
+script = ExtResource("3_hnesk")
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Panel" type="Panel" parent="TextureRect/CenterContainer"]
+layout_mode = 2
+
+[node name="Item" type="Sprite2D" parent="TextureRect/CenterContainer/Panel"]
+visible = false
+
+[node name="Label" type="Label" parent="TextureRect/CenterContainer/Panel"]
+custom_minimum_size = Vector2(36, 33)
+layout_mode = 1
+offset_left = -9.0
+offset_top = -4.0
+offset_right = 27.0
+offset_bottom = 29.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("3_a1iaw")
+theme_override_font_sizes/font_size = 21
+text = "9"
+horizontal_alignment = 2
+vertical_alignment = 1

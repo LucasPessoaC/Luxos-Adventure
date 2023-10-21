@@ -13,6 +13,8 @@ class_name HitState
 @export var return_state : State
 @onready var timer : Timer = $Timer
 @onready var hitBox = $"../../HitBox"
+@onready var col = $"../../CollisionShape2D"
+
 
 func _ready():
 	damageable.connect("on_hit", on_damageable_hit)
@@ -34,9 +36,12 @@ func on_damageable_hit(node : Node, damage_amount : int, knockback_direction : V
 		
 	else:
 		character.velocity = Vector2.ZERO
+		
+		if character_state_machine.current_state != dead_state : 
+			hitBox.queue_free()
+			col.queue_free()
 		emit_signal("interrupt_state", dead_state)
 		playback.travel(dead_animation_node)
-		hitBox.queue_free()
 		
 
 func _on_timer_timeout():

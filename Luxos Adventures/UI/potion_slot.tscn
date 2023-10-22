@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbrjmmluueh86"]
+
+[ext_resource type="Script" path="res://UI/slot_gui.gd" id="1_siffy"]
+[ext_resource type="Texture2D" uid="uid://c0sly216bdtf4" path="res://Art/Free Inventory/Free Inventory/Inventory_Slot.png" id="1_xv51m"]
+[ext_resource type="Texture2D" uid="uid://do78pcci8xei8" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/potion_03f.png" id="2_euqfm"]
+[ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="2_s76k7"]
+[ext_resource type="Script" path="res://Inventory/PotionDrag'nDrop.gd" id="4_hca7q"]
+
+[node name="PotionSlot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_siffy")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_xv51m")
+centered = false
+
+[node name="PotionBack" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.556863)
+position = Vector2(4, 4)
+texture = ExtResource("2_euqfm")
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 0
+expand_mode = 1
+script = ExtResource("4_hca7q")
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="TextureRect/CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect/CenterContainer/Panel"]
+visible = false
+
+[node name="Label" type="Label" parent="TextureRect/CenterContainer/Panel"]
+custom_minimum_size = Vector2(39, 34)
+layout_mode = 1
+offset_left = -21.0
+offset_top = -8.0
+offset_right = 18.0
+offset_bottom = 26.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("2_s76k7")
+theme_override_font_sizes/font_size = 21
+text = "9"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="TextureRect" to="TextureRect" method="_on_mouse_entered"]
+[connection signal="potionChanged" from="TextureRect" to="." method="_on_texture_rect_potion_changed"]

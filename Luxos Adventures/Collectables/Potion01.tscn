@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3n0fge7avcte"]
+
+[ext_resource type="PackedScene" uid="uid://6uvpi2672rf4" path="res://Collectables/collectable.tscn" id="1_vt0s6"]
+[ext_resource type="Texture2D" uid="uid://bxkxfllyxkjh2" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/potion_01a.png" id="2_3t1lc"]
+[ext_resource type="Resource" uid="uid://bwyui32bsjtfv" path="res://Inventory/Items/Potion01.tres" id="2_si8fp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5ck5"]
+resource_local_to_scene = true
+
+[node name="Collectable" instance=ExtResource("1_vt0s6")]
+itemRes = ExtResource("2_si8fp")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_a5ck5")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_3t1lc")
+
+[node name="Label" parent="CenterContainer" index="0"]
+visible = true
+text = "Small Potion"

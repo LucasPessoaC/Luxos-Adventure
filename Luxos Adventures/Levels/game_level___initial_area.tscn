@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d1mvmgncxe4mp"]
+[gd_scene load_steps=34 format=3 uid="uid://d1mvmgncxe4mp"]
 
 [ext_resource type="PackedScene" uid="uid://dl0sk1hax0s5n" path="res://Characters/player_main.tscn" id="1_bbgn8"]
 [ext_resource type="Script" path="res://Levels/game_level___initial_area.gd" id="1_tplx5"]
@@ -17,8 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://boyyuxcxdhd6b" path="res://UI/backpack.tscn" id="12_bmpy3"]
 [ext_resource type="PackedScene" uid="uid://b1ciy3ojugtr4" path="res://Collectables/gold_coin.tscn" id="12_uufet"]
 [ext_resource type="PackedScene" uid="uid://cbnwedcuhmwsx" path="res://Collectables/silver_coin.tscn" id="13_qd2f4"]
+[ext_resource type="PackedScene" uid="uid://d3n0fge7avcte" path="res://Collectables/Potion01.tscn" id="14_3wg7d"]
+[ext_resource type="PackedScene" uid="uid://bwvn7khm8nhty" path="res://Collectables/Potion02.tscn" id="15_btn0j"]
+[ext_resource type="PackedScene" uid="uid://n1fmj0a6swkw" path="res://Collectables/Potion03.tscn" id="16_bwud7"]
 [ext_resource type="Script" path="res://Levels/CanvasLayer.gd" id="16_js8wc"]
 [ext_resource type="PackedScene" uid="uid://c1fgsss4f8447" path="res://UI/inventory_gui.tscn" id="18_uvvx1"]
+[ext_resource type="PackedScene" uid="uid://s86xgmcvoufq" path="res://UI/potion_gui.tscn" id="23_grrgm"]
 
 [sub_resource type="GDScript" id="GDScript_nrvi2"]
 script/source = "extends TileSet
@@ -1628,6 +1632,9 @@ scenes/2/scene = ExtResource("10_mww21")
 scenes/3/scene = ExtResource("11_s6dd7")
 scenes/4/scene = ExtResource("12_uufet")
 scenes/5/scene = ExtResource("13_qd2f4")
+scenes/7/scene = ExtResource("14_3wg7d")
+scenes/8/scene = ExtResource("15_btn0j")
+scenes/9/scene = ExtResource("16_bwud7")
 
 [sub_resource type="TileSet" id="TileSet_wfmw4"]
 tile_size = Vector2i(32, 32)
@@ -1720,7 +1727,7 @@ layer_8/modulate = Color(1, 1, 1, 1)
 layer_8/y_sort_enabled = true
 layer_8/y_sort_origin = 0
 layer_8/z_index = 1
-layer_8/tile_data = PackedInt32Array(524292, 6, 65536, 458746, 6, 65536, 589817, 6, 65536, 393213, 6, 65536, 458751, 6, 65536, 262144, 6, 65536, 589820, 6, 131072, 589822, 6, 131072, 655359, 6, 131072)
+layer_8/tile_data = PackedInt32Array(524292, 6, 65536, 458746, 6, 65536, 589817, 6, 65536, 393213, 6, 65536, 458751, 6, 65536, 262144, 6, 65536, 589820, 6, 131072, 589822, 6, 131072, 655359, 6, 131072, 1048572, 6, 589824, 1048573, 6, 589824, 983038, 6, 589824, 983039, 6, 589824, 917504, 6, 589824, 851968, 6, 589824, 851969, 6, 589824, 851970, 6, 589824, 983032, 6, 524288, 1048568, 6, 524288, 1048567, 6, 524288, 786425, 6, 458752, 786424, 6, 458752, 851960, 6, 458752)
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1757,10 +1764,6 @@ process_mode = 3
 script = ExtResource("16_js8wc")
 
 [node name="Backpack" parent="CanvasLayer" instance=ExtResource("12_bmpy3")]
-offset_left = 39.0
-offset_top = -1.0
-offset_right = 39.0
-offset_bottom = -1.0
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -1786,13 +1789,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = -50.0
-offset_right = 80.0
-offset_bottom = 50.0
+offset_left = -144.0
+offset_top = -180.0
+offset_right = 16.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 
+[node name="PotionGUI" parent="CanvasLayer" instance=ExtResource("23_grrgm")]
+
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
+[connection signal="potionChanged" from="CanvasLayer/InventoryGui" to="Player_Main" method="_on_inventory_gui_potion_changed"]

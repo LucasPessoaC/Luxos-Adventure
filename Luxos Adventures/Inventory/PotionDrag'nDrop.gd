@@ -7,13 +7,13 @@ func _get_drag_data(_at_position):
 	var parente = get_parent()
 	var index = parente.get_index()
 	
-	if(inventory.slots[index].item != null):
+	if(inventory.potionSlot[index].item != null):
 		var data = {}
-		data["arrayTypeSaida"] = "Slot"
-		data["arrayTypeEntrada"] = ""
+		data["arrayTypeSaida"] = "potionSlot"
 		data["origin_texture"] = texture
+		data["arrayTypeEntrada"] = ""
 		data["index_saiu"] = index
-		data["item_name"] = inventory.slots[index].item.name
+		data["item_name"] = inventory.potionSlot[index].item.name
 		var preview_texture = TextureRect.new()
 		preview_texture.texture = texture
 		preview_texture.expand_mode = 1
@@ -26,25 +26,21 @@ func _get_drag_data(_at_position):
 		set_drag_preview(preview)
 		return data
 		
-func _can_drop_data(_at_position, data):
-	
-	return true
-	return false
-	
-func _drop_data(_at_position, data):
-	texture = data["origin_texture"]
-	data["arrayTypeEntrada"] = "Slot"
-#	texture = null
-	if(data["arrayTypeSaida"] == "potionSlot"):
-		inventory.swap(0, get_parent().get_index(), data["arrayTypeSaida"], data["arrayTypeEntrada"])
-		emit_signal("potionChanged")
+func _can_drop_data(at_position, data):
+	if(data["item_name"] == "Small Potion" || data["item_name"] == "Medium Potion" || data["item_name"] == "Great Potion" ):
+		return true
 	else:
-		inventory.swap(data["index_saiu"], get_parent().get_index(),  data["arrayTypeSaida"], data["arrayTypeEntrada"])
-		
+		return false
+	
+func _drop_data(at_position, data):
+	texture = data["origin_texture"]
+	data["arrayTypeEntrada"] = "potionSlot"
+	inventory.swap(data["index_saiu"], 0, data["arrayTypeSaida"], data["arrayTypeEntrada"])
+	emit_signal("potionChanged")
 
 
 func _on_mouse_entered():
 	var parente = get_parent()
 	var index = parente.get_index()
-	if(texture != null):
-		tooltip_text = inventory.slots[index].item.name
+	if(texture != null && inventory.potionSlot[index].item.name != null):
+		tooltip_text = inventory.potionSlot[index].item.name

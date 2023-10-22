@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1fgsss4f8447"]
+[gd_scene load_steps=6 format=3 uid="uid://c1fgsss4f8447"]
 
 [ext_resource type="Texture2D" uid="uid://bats0knc8gwn2" path="res://Art/Free Inventory/Free Inventory/Inventory_background.png" id="1_0evix"]
 [ext_resource type="Script" path="res://UI/inventory_gui.gd" id="1_2xmp6"]
 [ext_resource type="PackedScene" uid="uid://bmn6j2x0juu0w" path="res://UI/slot_gui.tscn" id="2_05c7s"]
+[ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="3_8xtt5"]
+[ext_resource type="PackedScene" uid="uid://cbrjmmluueh86" path="res://UI/potion_slot.tscn" id="5_iv7vp"]
 
 [node name="InventoryGui" type="Control"]
 custom_minimum_size = Vector2(160, 100)
@@ -17,7 +19,7 @@ script = ExtResource("1_2xmp6")
 custom_minimum_size = Vector2(160, 100)
 layout_mode = 0
 offset_right = 160.0
-offset_bottom = 100.0
+offset_bottom = 192.0
 texture = ExtResource("1_0evix")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -83,3 +85,96 @@ layout_mode = 2
 
 [node name="Slot15" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
 layout_mode = 2
+
+[node name="Slot16" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot17" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot18" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot19" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot20" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot21" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot22" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot23" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot24" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot25" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot26" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot27" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot28" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot29" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Slot30" parent="NinePatchRect/GridContainer" instance=ExtResource("2_05c7s")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 153.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("3_8xtt5")
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 159.0
+offset_right = 213.0
+offset_bottom = 63.0
+texture = ExtResource("1_0evix")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PotionSlot" parent="NinePatchRect2/CenterContainer" instance=ExtResource("5_iv7vp")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+offset_left = 10.0
+offset_top = 47.0
+offset_right = 44.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("3_8xtt5")
+theme_override_font_sizes/font_size = 10
+text = "Potion"
+
+[connection signal="potionChanged" from="NinePatchRect2/CenterContainer/PotionSlot" to="." method="_on_potion_slot_potion_changed"]

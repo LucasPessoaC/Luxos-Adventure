@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://ce2vlbvij2vwe"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="1_83wwb"]
+[ext_resource type="Texture2D" uid="uid://bh83x8mp3g61v" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/potion_02a.png" id="2_rumg4"]
+
+[resource]
+script = ExtResource("1_83wwb")
+name = "Medium Potion"
+texture = ExtResource("2_rumg4")

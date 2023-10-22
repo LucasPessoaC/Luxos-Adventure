@@ -16,10 +16,6 @@ shape = SubResource("RectangleShape2D_336f2")
 position = Vector2(1, 1)
 texture = ExtResource("2_opfk7")
 
-[node name="Label" parent="." index="2"]
+[node name="Label" parent="CenterContainer" index="0"]
 visible = true
-offset_left = -34.0
-offset_top = -26.0
-offset_right = 57.0
-offset_bottom = 2.0
-text = "Silver coin"
+text = "Silver Coin"

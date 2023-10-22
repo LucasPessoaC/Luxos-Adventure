@@ -19,11 +19,7 @@ position = Vector2(-1.19209e-07, 0)
 scale = Vector2(0.75, 0.8125)
 texture = ExtResource("2_bbgbx")
 
-[node name="Label" parent="." index="2"]
+[node name="Label" parent="CenterContainer" index="0"]
 visible = true
-offset_left = -27.0
-offset_top = -29.0
-offset_right = 44.0
-offset_bottom = -1.0
-text = "Bones
-"
+custom_minimum_size = Vector2(60, 0)
+text = "Bone"

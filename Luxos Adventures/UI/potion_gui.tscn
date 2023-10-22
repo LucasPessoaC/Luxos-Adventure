@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://s86xgmcvoufq"]
+
+[ext_resource type="Script" path="res://UI/potion_gui.gd" id="1_rpo2m"]
+[ext_resource type="Texture2D" uid="uid://53epfu8yk1m8" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/potion_03a.png" id="1_tdcvh"]
+[ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="2_027ii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ino31"]
+bg_color = Color(0.282353, 0.282353, 0.282353, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 250
+corner_radius_top_right = 250
+corner_radius_bottom_right = 250
+corner_radius_bottom_left = 250
+corner_detail = 20
+anti_aliasing_size = 0.445
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv8tr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qmnn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.784314, 0.784314, 0.784314, 0.85098)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PotionGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rpo2m")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = -100.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+mouse_filter = 2
+
+[node name="Panel2" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ino31")
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/Panel2"]
+self_modulate = Color(0.380392, 0, 0, 1)
+position = Vector2(30, 30)
+texture = ExtResource("1_tdcvh")
+
+[node name="Panel" type="Panel" parent="CenterContainer/Panel2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yv8tr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/Panel2/Panel"]
+position = Vector2(30, 30)
+
+[node name="Label" type="Label" parent="CenterContainer/Panel2/Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 33.0
+offset_right = 50.0
+offset_bottom = 57.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("2_027ii")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -43.0
+offset_right = 119.0
+offset_bottom = -3.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CenterContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_027ii")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0qmnn")
+text = "Q"
+horizontal_alignment = 1
+vertical_alignment = 1

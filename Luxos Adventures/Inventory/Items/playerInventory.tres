@@ -1,7 +1,11 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=18 format=3 uid="uid://3geolf6fn88x"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=34 format=3 uid="uid://3geolf6fn88x"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="2_libb0"]
 [ext_resource type="Script" path="res://Inventory/inventorySlot.gd" id="3_qjk0q"]
+
+[sub_resource type="Resource" id="Resource_jvrb5"]
+script = ExtResource("3_qjk0q")
+amount = 0
 
 [sub_resource type="Resource" id="Resource_ya4mj"]
 script = ExtResource("3_qjk0q")
@@ -63,6 +67,67 @@ amount = 0
 script = ExtResource("3_qjk0q")
 amount = 0
 
+[sub_resource type="Resource" id="Resource_wxr5j"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_2elv0"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_r4212"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_m3s0q"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_mwbjo"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_1uuo2"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_uba3w"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_hhqt1"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_syle3"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ahmjb"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_3ribd"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_epflo"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_h5m8u"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ls4q5"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
+[sub_resource type="Resource" id="Resource_18iex"]
+script = ExtResource("3_qjk0q")
+amount = 0
+
 [resource]
 script = ExtResource("2_libb0")
-slots = Array[ExtResource("3_qjk0q")]([SubResource("Resource_ya4mj"), SubResource("Resource_vbr1i"), SubResource("Resource_si522"), SubResource("Resource_5twfd"), SubResource("Resource_gvjkf"), SubResource("Resource_e3lnl"), SubResource("Resource_o0fdx"), SubResource("Resource_ma6c2"), SubResource("Resource_my70p"), SubResource("Resource_2xckt"), SubResource("Resource_db44l"), SubResource("Resource_ko8dk"), SubResource("Resource_dhy8b"), SubResource("Resource_xvoyf"), SubResource("Resource_tlsh2")])
+slots = Array[ExtResource("3_qjk0q")]([SubResource("Resource_ya4mj"), SubResource("Resource_vbr1i"), SubResource("Resource_si522"), SubResource("Resource_5twfd"), SubResource("Resource_gvjkf"), SubResource("Resource_e3lnl"), SubResource("Resource_o0fdx"), SubResource("Resource_ma6c2"), SubResource("Resource_my70p"), SubResource("Resource_2xckt"), SubResource("Resource_db44l"), SubResource("Resource_ko8dk"), SubResource("Resource_dhy8b"), SubResource("Resource_xvoyf"), SubResource("Resource_tlsh2"), SubResource("Resource_wxr5j"), SubResource("Resource_2elv0"), SubResource("Resource_r4212"), SubResource("Resource_m3s0q"), SubResource("Resource_mwbjo"), SubResource("Resource_1uuo2"), SubResource("Resource_uba3w"), SubResource("Resource_hhqt1"), SubResource("Resource_syle3"), SubResource("Resource_ahmjb"), SubResource("Resource_3ribd"), SubResource("Resource_epflo"), SubResource("Resource_h5m8u"), SubResource("Resource_ls4q5"), SubResource("Resource_18iex")])
+potionSlot = Array[ExtResource("3_qjk0q")]([SubResource("Resource_jvrb5")])

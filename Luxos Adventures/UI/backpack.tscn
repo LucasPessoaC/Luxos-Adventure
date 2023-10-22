@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://boyyuxcxdhd6b"]
+[gd_scene load_steps=4 format=3 uid="uid://boyyuxcxdhd6b"]
 
 [ext_resource type="Texture2D" uid="uid://dybnfgroy2b8n" path="res://Art/icon_7.png" id="1_mu7co"]
+[ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="2_q1nuk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d316y"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -8,7 +9,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.8, 0.8, 0.8, 0.74902)
+border_color = Color(0.784314, 0.784314, 0.784314, 0.85098)
 border_blend = true
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -27,15 +28,17 @@ size_flags_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1012.0
-offset_top = 531.0
-offset_right = -49.0
-offset_bottom = -26.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -71.0
+offset_top = -76.0
+offset_right = -71.0
+offset_bottom = -76.0
+grow_horizontal = 0
+grow_vertical = 0
 tooltip_text = "Backpack"
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
@@ -46,12 +49,25 @@ self_modulate = Color(1, 1, 1, 0.643137)
 scale = Vector2(1.988, 2)
 texture = ExtResource("1_mu7co")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1035.0
-offset_top = 611.0
-offset_right = 1067.0
-offset_bottom = 641.0
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -38.0
+offset_right = -61.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CenterContainer2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q1nuk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_d316y")
 text = "E"
 horizontal_alignment = 1

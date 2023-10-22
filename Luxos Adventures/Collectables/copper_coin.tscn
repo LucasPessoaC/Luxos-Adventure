@@ -16,10 +16,6 @@ shape = SubResource("RectangleShape2D_vxfy1")
 position = Vector2(1, 1)
 texture = ExtResource("2_fhogw")
 
-[node name="Label" parent="." index="2"]
+[node name="Label" parent="CenterContainer" index="0"]
 visible = true
-offset_left = -42.0
-offset_top = -24.0
-offset_right = 66.0
-offset_bottom = 4.0
-text = "Copper coin"
+text = "Copper Coin"

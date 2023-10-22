@@ -10,6 +10,7 @@ class_name Player
 
 @onready var animation_tree = $AnimationTree
 
+
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var damage : Damageable = $Damageable
 @onready var hitEffect = $HurtEffect
@@ -33,6 +34,7 @@ signal facing_direction_changed(facing_right : bool)
 
 signal wasAttacked
 signal zeroHealth
+signal potionChanged
 
 func _ready():
 	update_animation_parameters(starting_direction)
@@ -52,6 +54,17 @@ func get_input():
 			velocity.y += 1
 		if Input.is_action_pressed('up'):
 			velocity.y -= 1
+		if Input.is_action_pressed("Heal"):
+			if(inventory.potionSlot[0].item != null):
+				
+				if(inventory.potionSlot[0].item.name == "Small Potion"):
+					wasAttacked.emit(health,-20)
+				if(inventory.potionSlot[0].item.name == "Medium Potion"):
+					wasAttacked.emit(health,-50)
+				if(inventory.potionSlot[0].item.name == "Great Potion"):
+					wasAttacked.emit(health,-100)
+			else:
+				pass
 		emit_signal("facing_direction_changed", !sprite.flip_h)
 			
 		update_animation_parameters(velocity)
@@ -72,6 +85,7 @@ func _physics_process(delta):
 			if area.name == "HitBox":
 				hurtByEnemy(area)
 	
+
 
 func handleColision():
 	for i in get_slide_collision_count():
@@ -117,3 +131,10 @@ func _on_hurt_box_area_entered(area):
 
 
 func _on_hurt_box_area_exited(area): pass
+
+
+func _on_inventory_gui_potion_changed():
+#	if(inventory.potionSlot[0].item != null):
+	var a = inventory.potionSlot[0]
+	emit_signal("potionChanged", a)
+#	print(emit_signal("potionChanged",a))

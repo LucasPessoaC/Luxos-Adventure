@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://n1fmj0a6swkw"]
+
+[ext_resource type="PackedScene" uid="uid://6uvpi2672rf4" path="res://Collectables/collectable.tscn" id="1_vtxlc"]
+[ext_resource type="Resource" uid="uid://dwp5h37hrty7q" path="res://Inventory/Items/Potion03.tres" id="2_imfqu"]
+[ext_resource type="Texture2D" uid="uid://53epfu8yk1m8" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/potion_03a.png" id="2_lyrrg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_351gb"]
+resource_local_to_scene = true
+
+[node name="Collectable" instance=ExtResource("1_vtxlc")]
+itemRes = ExtResource("2_imfqu")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_351gb")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_lyrrg")
+
+[node name="Label" parent="CenterContainer" index="0"]
+visible = true
+text = "Great Potion"

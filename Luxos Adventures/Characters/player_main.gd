@@ -15,6 +15,7 @@ class_name Player
 @onready var damage : Damageable = $Damageable
 @onready var hitEffect = $HurtEffect
 @onready var hurtTimer = $BlinkTimer
+@onready var healTimer = $HealTimer
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var character_state_machine : CharacterStateMachine = $CharacterStateMachine
 
@@ -35,6 +36,7 @@ signal facing_direction_changed(facing_right : bool)
 signal wasAttacked
 signal zeroHealth
 signal potionChanged
+signal potionChangedHeal
 
 func _ready():
 	update_animation_parameters(starting_direction)
@@ -54,17 +56,17 @@ func get_input():
 			velocity.y += 1
 		if Input.is_action_pressed('up'):
 			velocity.y -= 1
-		if Input.is_action_pressed("Heal"):
-			if(inventory.potionSlot[0].item != null):
-				
-				if(inventory.potionSlot[0].item.name == "Small Potion"):
-					wasAttacked.emit(health,-20)
-				if(inventory.potionSlot[0].item.name == "Medium Potion"):
-					wasAttacked.emit(health,-50)
-				if(inventory.potionSlot[0].item.name == "Great Potion"):
-					wasAttacked.emit(health,-100)
+		if Input.is_action_just_pressed("Heal"):
+			if(inventory.potionSlot[0].item != null && healTimer.is_stopped()):
+				heal()
 			else:
 				pass
+			if(inventory.potionSlot[0].amount == 0):
+				inventory.potionSlot[0].item = null 
+				_on_inventory_gui_potion_changed(false)
+				inventory.updated.emit()
+				
+				
 		emit_signal("facing_direction_changed", !sprite.flip_h)
 			
 		update_animation_parameters(velocity)
@@ -84,7 +86,6 @@ func _physics_process(delta):
 		for area in hurtBox.get_overlapping_areas():
 			if area.name == "HitBox":
 				hurtByEnemy(area)
-	
 
 
 func handleColision():
@@ -113,6 +114,7 @@ func on_hit(node : Node, damage_taken : int, knockback_direction : Vector2):
 	
 	
 func hurtByEnemy(area):
+	damage.hitCollided(10)
 	wasAttacked.emit(health,10)
 	hitted = true
 	health = health - 10
@@ -124,6 +126,44 @@ func hurtByEnemy(area):
 	hitEffect.play("RESET")
 	hitted = false
 
+func heal():
+	if(inventory.potionSlot[0].item.name == "Small Potion"):
+		wasAttacked.emit(health,-20)
+		health = (health - maxHealth) + 20
+		if(health >= 0):
+			health = maxHealth
+		else:
+			health += maxHealth 
+		inventory.potionSlot[0].amount -= 1
+		healTimer.start()
+		_on_inventory_gui_potion_changed(true)
+		inventory.updated.emit()
+		
+	if(inventory.potionSlot[0].item.name == "Medium Potion"):
+		wasAttacked.emit(health,-50)
+		health = (health - maxHealth)+50
+		if(health >= 0):
+			health = maxHealth
+		else:
+			health += maxHealth 
+		inventory.potionSlot[0].amount -= 1
+		healTimer.start()
+		_on_inventory_gui_potion_changed(true)
+		inventory.updated.emit()
+		
+		
+	if(inventory.potionSlot[0].item.name == "Great Potion"):
+		wasAttacked.emit(health,-100)
+		health = (health - maxHealth) + 100
+		if(health >= 0):
+			health = maxHealth
+		else:
+			health += maxHealth 
+		inventory.potionSlot[0].amount -= 1
+		healTimer.start()
+		_on_inventory_gui_potion_changed(true)
+		inventory.updated.emit()
+		
 
 func _on_hurt_box_area_entered(area):
 	if area.has_method("collect"):
@@ -133,8 +173,12 @@ func _on_hurt_box_area_entered(area):
 func _on_hurt_box_area_exited(area): pass
 
 
-func _on_inventory_gui_potion_changed():
+func _on_inventory_gui_potion_changed(heal:bool):
 #	if(inventory.potionSlot[0].item != null):
-	var a = inventory.potionSlot[0]
-	emit_signal("potionChanged", a)
+	if(!heal):
+		var a = inventory.potionSlot[0]
+		emit_signal("potionChanged", a)
+	else:
+		var a = inventory.potionSlot[0]
+		emit_signal("potionChangedHeal", a, heal)
 #	print(emit_signal("potionChanged",a))

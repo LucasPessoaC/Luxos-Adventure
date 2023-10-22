@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@export var damage : int = -20
+@export var damage : int = 20
 @export var enemy : Skeleton
 @export var facing_shape : Facing_collision_polygon2D
 

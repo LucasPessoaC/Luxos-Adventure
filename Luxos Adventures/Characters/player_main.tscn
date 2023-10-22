@@ -497,10 +497,13 @@ shape = SubResource("RectangleShape2D_5dnnj")
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("10_r8ejl")
-health = 100
 
 [node name="BlinkTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
 [connection signal="zeroHealth" from="." to="CharacterStateMachine" method="_on_player_main_zero_health"]

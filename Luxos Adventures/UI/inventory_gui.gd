@@ -37,6 +37,6 @@ func close():
 
 
 func _on_potion_slot_potion_changed():
-	emit_signal("potionChanged")
+	emit_signal("potionChanged", false)
 
 

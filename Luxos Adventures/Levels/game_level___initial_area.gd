@@ -9,6 +9,7 @@ func _ready():
 	heartContainer.updateHearts(player.current_health, player.health)
 	player.wasAttacked.connect(heartContainer.damageTaken)
 	player.potionChanged.connect(potionGUI.a)
+	player.potionChangedHeal.connect(potionGUI.heal)
 	
 
 

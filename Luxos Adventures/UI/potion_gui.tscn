@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://s86xgmcvoufq"]
+[gd_scene load_steps=8 format=3 uid="uid://s86xgmcvoufq"]
 
 [ext_resource type="Script" path="res://UI/potion_gui.gd" id="1_rpo2m"]
 [ext_resource type="Texture2D" uid="uid://53epfu8yk1m8" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/potion_03a.png" id="1_tdcvh"]
 [ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="2_027ii"]
+[ext_resource type="Texture2D" uid="uid://dj1lkustyesuw" path="res://Art/circle.png" id="4_at2rt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ino31"]
 bg_color = Color(0.282353, 0.282353, 0.282353, 1)
@@ -114,3 +115,25 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0qmnn")
 text = "Q"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0.443137)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -169.0
+offset_right = 957.0
+offset_bottom = 631.0
+grow_vertical = 0
+scale = Vector2(0.170562, 0.181506)
+fill_mode = 4
+texture_under = ExtResource("4_at2rt")
+texture_progress = ExtResource("4_at2rt")
+tint_under = Color(1, 1, 1, 0)
+tint_progress = Color(0.364706, 0.364706, 0.364706, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

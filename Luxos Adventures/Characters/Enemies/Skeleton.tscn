@@ -297,6 +297,7 @@ active = true
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("2_odowx")
+health = 20
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
 script = ExtResource("4_m3gke")

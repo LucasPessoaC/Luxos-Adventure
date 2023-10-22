@@ -1798,6 +1798,7 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 
 [node name="PotionGUI" parent="CanvasLayer" instance=ExtResource("23_grrgm")]
+process_mode = 1
 
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

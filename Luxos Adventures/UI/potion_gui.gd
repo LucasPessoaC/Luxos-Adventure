@@ -9,10 +9,13 @@ extends Control
 func _ready():
 	cooldown.value = 100
 	cooldown.visible = false
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(get_parent().get_parent().get_tree().paused == true):
+		get_tree().paused = true
 	if(!$Timer.is_stopped()):
 		cooldown.value = ($Timer.time_left * 100)/10
 

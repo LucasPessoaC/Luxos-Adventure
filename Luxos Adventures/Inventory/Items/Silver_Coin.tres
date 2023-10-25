@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://gv6taljyakm2"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="1_5xffc"]
+[ext_resource type="Texture2D" uid="uid://dw6g47qospp7y" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/coin_01c.png" id="2_3bsw7"]
+
+[resource]
+script = ExtResource("1_5xffc")
+name = "Silver Coin"
+texture = ExtResource("2_3bsw7")

@@ -1725,9 +1725,9 @@ layer_8/name = "collectables"
 layer_8/enabled = true
 layer_8/modulate = Color(1, 1, 1, 1)
 layer_8/y_sort_enabled = true
-layer_8/y_sort_origin = 0
-layer_8/z_index = 1
-layer_8/tile_data = PackedInt32Array(524292, 6, 65536, 458746, 6, 65536, 589817, 6, 65536, 393213, 6, 65536, 458751, 6, 65536, 262144, 6, 65536, 589820, 6, 131072, 589822, 6, 131072, 655359, 6, 131072, 1048572, 6, 589824, 1048573, 6, 589824, 983038, 6, 589824, 983039, 6, 589824, 917504, 6, 589824, 851968, 6, 589824, 851969, 6, 589824, 851970, 6, 589824, 983032, 6, 524288, 1048568, 6, 524288, 1048567, 6, 524288, 786425, 6, 458752, 786424, 6, 458752, 851960, 6, 458752)
+layer_8/y_sort_origin = -100
+layer_8/z_index = 0
+layer_8/tile_data = PackedInt32Array()
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

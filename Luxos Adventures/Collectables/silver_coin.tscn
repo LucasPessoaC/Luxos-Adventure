@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbnwedcuhmwsx"]
+[gd_scene load_steps=5 format=3 uid="uid://cbnwedcuhmwsx"]
 
 [ext_resource type="PackedScene" uid="uid://6uvpi2672rf4" path="res://Collectables/collectable.tscn" id="1_q32is"]
+[ext_resource type="Resource" uid="uid://gv6taljyakm2" path="res://Inventory/Items/Silver_Coin.tres" id="2_021p0"]
 [ext_resource type="Texture2D" uid="uid://dw6g47qospp7y" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/icons/32x32/coin_01c.png" id="2_opfk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_336f2"]
@@ -8,6 +9,7 @@ resource_local_to_scene = true
 size = Vector2(17, 12)
 
 [node name="Silver coin" instance=ExtResource("1_q32is")]
+itemRes = ExtResource("2_021p0")
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_336f2")

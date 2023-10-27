@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dl0sk1hax0s5n"]
+[gd_scene load_steps=59 format=3 uid="uid://dl0sk1hax0s5n"]
 
 [ext_resource type="Texture2D" uid="uid://cqbhojh3u6qrn" path="res://Art/Adventurer-1.5/adventurer-v1.5-Sheet.png" id="1_ipo6y"]
 [ext_resource type="Script" path="res://Characters/player_main.gd" id="1_kaixh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Characters/Sword.gd" id="7_nds44"]
 [ext_resource type="Script" path="res://Characters/FacingCollision2D.gd" id="8_qgjye"]
 [ext_resource type="Script" path="res://Characters/Enemies/Damageable.gd" id="10_r8ejl"]
+[ext_resource type="Texture2D" uid="uid://dy53uelctshw6" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/light.png" id="12_j4yx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmint"]
 size = Vector2(20, 18)
@@ -505,6 +506,11 @@ one_shot = true
 [node name="HealTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("12_j4yx5")
 
 [connection signal="zeroHealth" from="." to="CharacterStateMachine" method="_on_player_main_zero_health"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attacking" method="_on_animation_tree_animation_finished"]

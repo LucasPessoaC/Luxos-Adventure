@@ -3,6 +3,7 @@ extends Node2D
 @onready var heartContainer = $CanvasLayer/Control/HeartsContainer
 @onready var player = $Player_Main
 @onready var potionGUI = $CanvasLayer/PotionGUI
+@onready var dayCicle = $DayTimeCicle
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	heartContainer.setMaxHearts(player.maxHealth/20)
@@ -10,7 +11,7 @@ func _ready():
 	player.wasAttacked.connect(heartContainer.damageTaken)
 	player.potionChanged.connect(potionGUI.a)
 	player.potionChangedHeal.connect(potionGUI.heal)
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

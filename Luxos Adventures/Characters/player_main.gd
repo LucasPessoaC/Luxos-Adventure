@@ -16,6 +16,7 @@ class_name Player
 @onready var hitEffect = $HurtEffect
 @onready var hurtTimer = $BlinkTimer
 @onready var healTimer = $HealTimer
+@onready var light = $PointLight2D
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var character_state_machine : CharacterStateMachine = $CharacterStateMachine
 
@@ -173,6 +174,16 @@ func _on_hurt_box_area_entered(area):
 func _on_hurt_box_area_exited(area): pass
 
 
+func nightTime():
+	light.energy = 0.4
+#	if(light.energy < 0.4):
+#		light.energy += 0.0001
+		
+
+func dayTime():
+	
+	light.energy = 0
+
 func _on_inventory_gui_potion_changed(heal:bool):
 #	if(inventory.potionSlot[0].item != null):
 	if(!heal):
@@ -182,3 +193,11 @@ func _on_inventory_gui_potion_changed(heal:bool):
 		var a = inventory.potionSlot[0]
 		emit_signal("potionChangedHeal", a, heal)
 #	print(emit_signal("potionChanged",a))
+
+
+func _on_day_time_cicle_day():
+	dayTime()
+
+
+func _on_day_time_cicle_night():
+	nightTime()

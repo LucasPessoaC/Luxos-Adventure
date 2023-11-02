@@ -50,7 +50,7 @@ func path():
 
 func _physics_process(delta):
 	var dist = global_position - player.global_position
-	if(dist.x <= 120.0 && dist.x >= -120.0 && dist.y <= 120 && dist.y >= -120 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
+	if(dist.x <= 90.0 && dist.x >= -90.0 && dist.y <= 90 && dist.y >= -90 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
 		emit_signal("facing_direction_changed", !sprite.flip_h)
 		emit_signal("isInAttackArea", true)
 		state_machine.switch_states(attack_state)
@@ -64,7 +64,7 @@ func _physics_process(delta):
 		states_machine.travel("run")
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		
-		if dir && state_machine.check_if_can_move():
+		if (dir && state_machine.check_if_can_move()):
 			velocity.x = dir.x * speed
 			velocity.y = dir.y * speed
 			if(velocity.x > 0):

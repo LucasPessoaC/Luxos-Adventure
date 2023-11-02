@@ -24,7 +24,8 @@ func on_enter():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func state_process(_delta):
 #	&& playback.get_current_node() == "walk"
-	if(a.current_state == attack_state  ):
+	print(playback.get_current_node())
+	if(a.current_state == attack_state && playback.get_current_node() != "attack2"):
 		playback.travel(attack_animation_node)
 		velocity = Vector2.ZERO
 		character.velocity = Vector2.ZERO
@@ -45,6 +46,6 @@ func _on_animation_tree_animation_finished(_anim_name):
 #		playback.start("attack1", true)
 		pass
 	else:
-		if(a.current_state == attack_state):
+		if(a.current_state == attack_state && _anim_name == "attack2"):
 			playback.travel(idle_animation_node)
 			a.switch_states(idle_state)

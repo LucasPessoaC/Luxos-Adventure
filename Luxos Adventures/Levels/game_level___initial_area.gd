@@ -6,6 +6,8 @@ extends Node2D
 @onready var dayCicle = $DayTimeCicle
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var a = $"CanvasLayer/Transição"
+	a.set_next_animation(false)
 	heartContainer.setMaxHearts(player.maxHealth/20)
 	heartContainer.updateHearts(player.current_health, player.health)
 	player.wasAttacked.connect(heartContainer.damageTaken)

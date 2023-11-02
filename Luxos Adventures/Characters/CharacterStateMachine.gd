@@ -10,6 +10,9 @@ var states : Array[State]
 @export var animation_tree : AnimationTree 
 
 @onready var deathState = $Death
+signal dead
+var animation: String
+
 
 func _ready():
 	for child in get_children():
@@ -57,5 +60,10 @@ func on_state_interrupt_state(new_state : State):
 
 func _on_player_main_zero_health():
 	on_state_interrupt_state(deathState)
-	$Death.dead()
+	await $Death.dead()
+	emit_signal("dead")
+	
 
+
+func _on_animation_tree_animation_finished(anim_name):
+	animation = anim_name

@@ -15,18 +15,17 @@ func _ready():
 	enemy.connect("facing_direction_changed", on_player_facing_direction_changed)
 
 func on_player_facing_direction_changed(facing_right : bool):
-	
-	if(facing_right && last):
+	if(!facing_right && last):
 		facing_shape.position = facing_shape.facing_rigth_position
 		var area = get_children()
-		area[0].rotate(90)
+		area[0].rotate(deg_to_rad(180))
 		last2 = true
 		last = false
 		
-	elif(last2 && !facing_right):
+	elif(last2 && facing_right):
 		var area = get_children()
 		facing_shape.position = facing_shape.facing_left_position
-		area[0].rotate(-90)
+		area[0].rotate(deg_to_rad(180))
 		last = true
 		last2 = false
 

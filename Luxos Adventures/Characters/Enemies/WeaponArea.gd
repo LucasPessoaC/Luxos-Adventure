@@ -15,7 +15,6 @@ func _ready():
 	enemy.connect("facing_direction_changed", on_player_facing_direction_changed)
 
 func on_player_facing_direction_changed(facing_right : bool):
-	
 	if(facing_right && last):
 		facing_shape.position = facing_shape.facing_rigth_position
 		var area = get_children()

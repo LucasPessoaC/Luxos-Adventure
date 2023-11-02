@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://d1mvmgncxe4mp"]
+[gd_scene load_steps=126 format=3 uid="uid://d1mvmgncxe4mp"]
 
 [ext_resource type="PackedScene" uid="uid://dl0sk1hax0s5n" path="res://Characters/player_main.tscn" id="1_bbgn8"]
 [ext_resource type="Script" path="res://Levels/game_level___initial_area.gd" id="1_tplx5"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://c1fgsss4f8447" path="res://UI/inventory_gui.tscn" id="18_uvvx1"]
 [ext_resource type="PackedScene" uid="uid://s86xgmcvoufq" path="res://UI/potion_gui.tscn" id="23_grrgm"]
 [ext_resource type="Script" path="res://Levels/nightAndDay.gd" id="24_eoojq"]
+[ext_resource type="PackedScene" uid="uid://xctge06diu6h" path="res://UI/transição.tscn" id="25_arr30"]
 [ext_resource type="PackedScene" uid="uid://cvwn03egf0al7" path="res://UI/interact_gui.tscn" id="25_lvhtc"]
 [ext_resource type="PackedScene" uid="uid://dge2rkyxwmbt1" path="res://Levels/door.tscn" id="26_8wqsn"]
 [ext_resource type="PackedScene" uid="uid://bxv7fsakbfjs3" path="res://Characters/Enemies/wizard.tscn" id="27_nfrom"]
@@ -1998,11 +1999,12 @@ script = SubResource("GDScript_nrvi2")
 y_sort_enabled = true
 script = ExtResource("1_tplx5")
 
-[node name="Player_Main" parent="." instance=ExtResource("1_bbgn8")]
+[node name="Player_Main" parent="." node_paths=PackedStringArray("transionar") instance=ExtResource("1_bbgn8")]
 y_sort_enabled = true
 position = Vector2(-376, -56)
 scale = Vector2(1.5, 1.5)
 move_speed = 150.0
+transionar = NodePath("../CanvasLayer/Transição")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player_Main"]
 remote_path = NodePath("../../Camera2D")
@@ -2150,6 +2152,9 @@ offset_top = -360.0
 offset_right = -736.0
 offset_bottom = -360.0
 scale = Vector2(2, 2)
+mouse_filter = 2
+
+[node name="Transição" parent="CanvasLayer" instance=ExtResource("25_arr30")]
 mouse_filter = 2
 
 [node name="DayTimeCicle" type="CanvasModulate" parent="."]

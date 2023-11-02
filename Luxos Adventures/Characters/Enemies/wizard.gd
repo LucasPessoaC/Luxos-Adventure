@@ -22,6 +22,9 @@ class_name Wizard
 
 var player_spotted: bool = false
 
+signal facing_direction_changed(facing_right : bool)
+signal isInAttackArea(isPresent : bool)
+
 
 func _ready():
 	animation_tree.active = true
@@ -47,7 +50,7 @@ func path():
 
 func _physics_process(delta):
 	var dist = global_position - player.global_position
-	if(dist.x <= 40.0 && dist.x >= -40.0 && dist.y <= 40 && dist.y >= -40 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
+	if(dist.x <= 120.0 && dist.x >= -120.0 && dist.y <= 120 && dist.y >= -120 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
 		emit_signal("facing_direction_changed", !sprite.flip_h)
 		emit_signal("isInAttackArea", true)
 		state_machine.switch_states(attack_state)

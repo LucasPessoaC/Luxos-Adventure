@@ -6,3 +6,4 @@ extends State
 func dead():
 	playback.travel("Death")
 	
+	

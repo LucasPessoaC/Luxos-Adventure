@@ -7,6 +7,7 @@ class_name Player
 @export var knockback_velocity : float = 1500.0
 @export var starting_direction : Vector2 = Vector2(0, 1)
 @export var inventory: Inventory
+@export var transionar: transitor
 
 @onready var animation_tree = $AnimationTree
 
@@ -98,20 +99,24 @@ func update_animation_parameters(move_input: Vector2):
 	animation_tree.set("parameters/idle/blend_position", move_input)
 
 func on_hit(node : Node, damage_taken : int, knockback_direction : Vector2):
-	if isHitted : return
-	isHitted = true
-	velocity = Vector2.ZERO
-	velocity = knockback_velocity * knockback_direction
-	wasAttacked.emit(health,damage_taken)
-	health = health - damage_taken
-	hitEffect.play("Blink")
-	hurtTimer.start()
-	await hurtTimer.timeout
-	hitEffect.play("RESET")
-	isHitted = false
-	if(health <= 0 && character_state_machine.current_state != death_State):
-		emit_signal("zeroHealth")
-		health = health - 10
+	if (isHitted):
+		return
+	elif(!isHitted):
+		isHitted = true
+		velocity = Vector2.ZERO
+		velocity = knockback_velocity * knockback_direction
+		wasAttacked.emit(health,damage_taken)
+		health = health - damage_taken
+		if(health <= 0 && character_state_machine.current_state != death_State):
+			health = health - 10
+			emit_signal("zeroHealth")
+		hitEffect.play("Blink")
+		hurtTimer.start()
+		
+		await hurtTimer.timeout
+		hitEffect.play("RESET")
+		if(hurtTimer.time_left == 0):
+			isHitted = false
 	
 	
 func hurtByEnemy(area):
@@ -130,11 +135,12 @@ func hurtByEnemy(area):
 func heal():
 	if(inventory.potionSlot[0].item.name == "Small Potion"):
 		wasAttacked.emit(health,-20)
-		health = (health - maxHealth) + 20
-		if(health >= 0):
+#		health = (health - maxHealth) + 20
+#		if(health >= 0):
+		if(health+20 >= maxHealth):
 			health = maxHealth
 		else:
-			health += maxHealth 
+			health += 20 
 		inventory.potionSlot[0].amount -= 1
 		healTimer.start()
 		_on_inventory_gui_potion_changed(true)
@@ -142,8 +148,8 @@ func heal():
 		
 	if(inventory.potionSlot[0].item.name == "Medium Potion"):
 		wasAttacked.emit(health,-50)
-		health = (health - maxHealth)+50
-		if(health >= 0):
+#		health = (health - maxHealth)+50
+		if(health+50 >= maxHealth):
 			health = maxHealth
 		else:
 			health += maxHealth 
@@ -156,7 +162,7 @@ func heal():
 	if(inventory.potionSlot[0].item.name == "Great Potion"):
 		wasAttacked.emit(health,-100)
 		health = (health - maxHealth) + 100
-		if(health >= 0):
+		if(health+100 >= maxHealth):
 			health = maxHealth
 		else:
 			health += maxHealth 
@@ -202,3 +208,7 @@ func _on_day_time_cicle_day():
 
 func _on_day_time_cicle_night():
 	nightTime()
+
+
+func _on_character_state_machine_dead():
+	transionar.set_next_animation(true)

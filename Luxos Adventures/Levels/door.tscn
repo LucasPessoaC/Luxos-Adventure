@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dge2rkyxwmbt1"]
+[gd_scene load_steps=5 format=3 uid="uid://dge2rkyxwmbt1"]
 
+[ext_resource type="Script" path="res://Levels/door.gd" id="1_rivxi"]
 [ext_resource type="Texture2D" uid="uid://dthhics7ywavd" path="res://Art/Pixel Art Top Down - Basic/Texture/TX Props.png" id="1_ypphr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0t7r6"]
@@ -9,11 +10,12 @@ radius = 72.4431
 size = Vector2(37, 50)
 
 [node name="door" type="Node2D"]
+script = ExtResource("1_rivxi")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ActivationRange" type="Area2D" parent="."]
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationRange"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_0t7r6")
 
@@ -28,3 +30,6 @@ region_rect = Rect2(13, 88, 67, 136)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_ksc60")
+
+[connection signal="body_entered" from="ActivationRange" to="." method="_on_activation_range_body_entered"]
+[connection signal="body_exited" from="ActivationRange" to="." method="_on_activation_range_body_exited"]

@@ -1999,7 +1999,7 @@ script = ExtResource("1_tplx5")
 
 [node name="Player_Main" parent="." instance=ExtResource("1_bbgn8")]
 y_sort_enabled = true
-position = Vector2(-259, 131)
+position = Vector2(-376, -56)
 scale = Vector2(1.5, 1.5)
 move_speed = 150.0
 
@@ -2074,7 +2074,7 @@ layer_8/tile_data = PackedInt32Array()
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-259, 131)
+position = Vector2(-376, -56)
 scale = Vector2(1.5, 1.5)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -2155,10 +2155,13 @@ mouse_filter = 2
 script = ExtResource("24_eoojq")
 
 [node name="door" parent="." instance=ExtResource("26_8wqsn")]
-position = Vector2(-368, -160)
+position = Vector2(-369, -159)
 
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
 [connection signal="potionChanged" from="CanvasLayer/InventoryGui" to="Player_Main" method="_on_inventory_gui_potion_changed"]
+[connection signal="interagir" from="CanvasLayer/InteractGUI" to="door" method="_on_interact_gui_interagir"]
 [connection signal="day" from="DayTimeCicle" to="Player_Main" method="_on_day_time_cicle_day"]
 [connection signal="night" from="DayTimeCicle" to="Player_Main" method="_on_day_time_cicle_night"]
+[connection signal="activateGUI" from="door" to="CanvasLayer/InteractGUI" method="_on_door_activate_gui"]
+[connection signal="deactivateGUI" from="door" to="CanvasLayer/InteractGUI" method="_on_door_deactivate_gui"]

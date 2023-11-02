@@ -5,15 +5,14 @@ class_name Skeleton
 enum SKELETON_STATE{IDLE, WALK}
 
 @export var speed : float = 50.0
-@export var starting_direction_move : Vector2 = Vector2.LEFT
 @onready var animation_tree : AnimationTree = $AnimationTree
 @export var hit_state : State
 @export var dead_state : State
 @export var attack_state : State
 
 @onready var los = $LineOfsight
-@export var player: Node2D
 @export var nav_agent: NavigationAgent2D
+@export var player: Node2D
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
@@ -29,10 +28,6 @@ signal isInAttackArea(isPresent : bool)
 var player_spotted: bool = false
 var control : bool
 
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var move_direction : Vector2 = Vector2.ZERO
 var current_state : SKELETON_STATE = SKELETON_STATE.IDLE
 
 func _ready():
@@ -40,14 +35,12 @@ func _ready():
 	nav_agent.target_desired_distance = 50.0
 	nav_agent.path_desired_distance = 50.0
 	path()
-	
-func select_new_direction():
-	move_direction = Vector2(randi_range(-1,1), randi_range(-1,1))
-
 
 func _physics_process(_delta: float):
 #	# Get the input direction and handle the movement/deceleration.
 #	# As good practice, you should replace UI actions with custom gameplay actions.
+
+#Attack Animation distance
 	var dist = global_position - player.global_position
 	if(dist.x <= 40.0 && dist.x >= -40.0 && dist.y <= 40 && dist.y >= -40 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
 		emit_signal("facing_direction_changed", !sprite.flip_h)

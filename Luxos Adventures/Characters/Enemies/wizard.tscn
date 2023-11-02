@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bxv7fsakbfjs3"]
+[gd_scene load_steps=42 format=3 uid="uid://bxv7fsakbfjs3"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/wizard.gd" id="1_2a0i0"]
 [ext_resource type="Texture2D" uid="uid://wgv8wm3aty2u" path="res://Art/EVil Wizard 2/Sprites/Take hit.png" id="1_5qyup"]
@@ -382,18 +382,25 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77huv"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7lmum"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ct1g"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i67qm"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2tbf3"]
+states/Start/position = Vector2(258, 211)
 states/attack1/node = SubResource("AnimationNodeAnimation_a1g6u")
-states/attack1/position = Vector2(482, 13)
+states/attack1/position = Vector2(501, -9)
 states/attack2/node = SubResource("AnimationNodeAnimation_a0cpt")
-states/attack2/position = Vector2(638, 13)
+states/attack2/position = Vector2(673, 59)
 states/death/node = SubResource("AnimationNodeAnimation_fowuu")
-states/death/position = Vector2(549, 100)
+states/death/position = Vector2(431, 79)
 states/idle/node = SubResource("AnimationNodeAnimation_7wxnh")
-states/idle/position = Vector2(380, 100)
+states/idle/position = Vector2(495, 211)
 states/run/node = SubResource("AnimationNodeAnimation_rxf58")
-states/run/position = Vector2(380, 13)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_27thc"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_o14cv"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_itbyr"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_jp34h"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_l3yuv"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_7i7bh"), "run", "attack1", SubResource("AnimationNodeStateMachineTransition_fcduu"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_77huv")]
+states/run/position = Vector2(287, 59)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_27thc"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_o14cv"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_itbyr"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_jp34h"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_l3yuv"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_7i7bh"), "run", "attack1", SubResource("AnimationNodeStateMachineTransition_fcduu"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_77huv"), "run", "death", SubResource("AnimationNodeStateMachineTransition_7lmum"), "attack1", "death", SubResource("AnimationNodeStateMachineTransition_0ct1g"), "attack2", "death", SubResource("AnimationNodeStateMachineTransition_i67qm")]
 graph_offset = Vector2(-23, -27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f01i0"]
@@ -457,6 +464,7 @@ collision_mask = 3
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("8_co35x")
+health = 200
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
 script = ExtResource("9_vd71p")
@@ -470,6 +478,7 @@ damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 idle_state = NodePath("../Idle")
 character_state_machine = NodePath("..")
+dead_animation_node = "death"
 return_state = NodePath("../Idle")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/HitState"]

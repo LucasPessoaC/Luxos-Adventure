@@ -45,5 +45,6 @@ func _on_animation_tree_animation_finished(_anim_name):
 #		playback.start("attack1", true)
 		pass
 	else:
-		playback.travel(idle_animation_node)
-		a.switch_states(idle_state)
+		if(a.current_state == attack_state):
+			playback.travel(idle_animation_node)
+			a.switch_states(idle_state)

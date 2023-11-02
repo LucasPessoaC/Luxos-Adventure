@@ -8,7 +8,7 @@ class_name HitState
 @onready var hit_state : State =  $Hit
 
 @export var character_state_machine : CharacterStateMachine
-@export var dead_animation_node : String = "Death"
+@export var dead_animation_node : String
 @export var knockback_velocity : float = 600.0
 @export var return_state : State
 @onready var timer : Timer = $Timer
@@ -83,4 +83,5 @@ func dropItem():
 
 
 func _on_timer_timeout():
-	next_state = return_state
+	if(character_state_machine.current_state != dead_state ):
+		next_state = return_state

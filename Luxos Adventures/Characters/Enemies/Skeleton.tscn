@@ -318,6 +318,7 @@ damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 idle_state = NodePath("../Idle")
 character_state_machine = NodePath("..")
+dead_animation_node = "Death"
 return_state = NodePath("../Idle")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]

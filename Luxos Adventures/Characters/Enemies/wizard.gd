@@ -1,9 +1,19 @@
 extends CharacterBody2D
 
+class_name Wizard
+
 
 @export var speed : float = 50.0
 
 @onready var animation_tree : AnimationTree = $AnimationTree
+
+@onready var state_machine : CharacterStateMachine = $CharacterStateMachine
+@onready var states_machine = animation_tree.get("parameters/playback")
+@export var hit_state : State
+@export var dead_state : State
+@export var attack_state : State
+
+@onready var attackBox = $Area2D/AttackArea
 @onready var los = $LineOfSight
 @export var nav_agent: NavigationAgent2D
 @export var player: Node2D
@@ -36,6 +46,26 @@ func path():
 		nav_agent.target_position = position
 
 func _physics_process(delta):
+	var dist = global_position - player.global_position
+	if(dist.x <= 40.0 && dist.x >= -40.0 && dist.y <= 40 && dist.y >= -40 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
+		emit_signal("facing_direction_changed", !sprite.flip_h)
+		emit_signal("isInAttackArea", true)
+		state_machine.switch_states(attack_state)
+	else:
+		if(state_machine.current_state == attack_state ):
+			emit_signal("isInAttackArea", false)
+	
 	los.look_at(player.global_position)
 	checkPlayer()
+	if(player_spotted && state_machine.current_state != hit_state && state_machine.current_state != attack_state && state_machine.current_state != dead_state):
+		states_machine.travel("run")
+		var dir = to_local(nav_agent.get_next_path_position()).normalized()
+		
+		if dir && state_machine.check_if_can_move():
+			velocity.x = dir.x * speed
+			velocity.y = dir.y * speed
+			if(velocity.x > 0):
+				sprite.flip_h = false
+			else:
+				sprite.flip_h = true
 	move_and_slide()

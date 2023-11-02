@@ -37,9 +37,6 @@ func _ready():
 	path()
 
 func _physics_process(_delta: float):
-#	# Get the input direction and handle the movement/deceleration.
-#	# As good practice, you should replace UI actions with custom gameplay actions.
-
 #Attack Animation distance
 	var dist = global_position - player.global_position
 	if(dist.x <= 40.0 && dist.x >= -40.0 && dist.y <= 40 && dist.y >= -40 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):

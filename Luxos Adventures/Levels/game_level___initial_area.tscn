@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://d1mvmgncxe4mp"]
+[gd_scene load_steps=125 format=3 uid="uid://d1mvmgncxe4mp"]
 
 [ext_resource type="PackedScene" uid="uid://dl0sk1hax0s5n" path="res://Characters/player_main.tscn" id="1_bbgn8"]
 [ext_resource type="Script" path="res://Levels/game_level___initial_area.gd" id="1_tplx5"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://Levels/nightAndDay.gd" id="24_eoojq"]
 [ext_resource type="PackedScene" uid="uid://cvwn03egf0al7" path="res://UI/interact_gui.tscn" id="25_lvhtc"]
 [ext_resource type="PackedScene" uid="uid://dge2rkyxwmbt1" path="res://Levels/door.tscn" id="26_8wqsn"]
+[ext_resource type="PackedScene" uid="uid://bxv7fsakbfjs3" path="res://Characters/Enemies/wizard.tscn" id="27_nfrom"]
 
 [sub_resource type="GDScript" id="GDScript_nrvi2"]
 script/source = "extends TileSet
@@ -2156,6 +2157,9 @@ script = ExtResource("24_eoojq")
 
 [node name="door" parent="." instance=ExtResource("26_8wqsn")]
 position = Vector2(-369, -159)
+
+[node name="Wizard" parent="." node_paths=PackedStringArray("player") instance=ExtResource("27_nfrom")]
+player = NodePath("../Player_Main")
 
 [connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

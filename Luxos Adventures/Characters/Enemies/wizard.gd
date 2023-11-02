@@ -68,4 +68,12 @@ func _physics_process(delta):
 				sprite.flip_h = false
 			else:
 				sprite.flip_h = true
+					
+	else:
+		if(state_machine.current_state != hit_state && state_machine.current_state != attack_state && state_machine.current_state != dead_state):
+			velocity = Vector2.ZERO
+			states_machine.travel("idle")
 	move_and_slide()
+	
+func _on_timer_timeout():
+	path()

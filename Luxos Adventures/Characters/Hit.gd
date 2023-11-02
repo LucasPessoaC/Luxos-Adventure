@@ -82,5 +82,5 @@ func dropItem():
 			
 
 
-func _on_timer_timeout(): 
+func _on_timer_timeout():
 	next_state = return_state

@@ -256,6 +256,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_aih2h"]
 resource_name = "idle"
 length = 0.75
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -400,9 +401,11 @@ size = Vector2(50, 62)
 
 [node name="Wizard" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "attack_state", "nav_agent")]
 collision_layer = 5
-collision_mask = 7
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_2a0i0")
-speed = 400.0
+speed = 150.0
 hit_state = NodePath("CharacterStateMachine/HitState")
 dead_state = NodePath("CharacterStateMachine/Dead")
 attack_state = NodePath("CharacterStateMachine/AttackState")
@@ -429,6 +432,8 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 3
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-1, 15)
@@ -448,6 +453,7 @@ script = ExtResource("5_6c4wk")
 [node name="LineOfSight" type="RayCast2D" parent="."]
 position = Vector2(0, 35)
 target_position = Vector2(300, 0)
+collision_mask = 3
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("8_co35x")
@@ -486,6 +492,12 @@ script = ExtResource("14_ug0xu")
 script = ExtResource("14_ug0xu")
 can_move = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/AttackState" method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="CharacterStateMachine/HitState/Timer" to="CharacterStateMachine/HitState" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

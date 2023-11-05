@@ -24,7 +24,6 @@ func on_enter():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func state_process(_delta):
 #	&& playback.get_current_node() == "walk"
-	print(playback.get_current_node())
 	if(a.current_state == attack_state && playback.get_current_node() != "attack2"):
 		playback.travel(attack_animation_node)
 		velocity = Vector2.ZERO

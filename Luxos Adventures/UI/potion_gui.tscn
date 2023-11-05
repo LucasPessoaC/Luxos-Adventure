@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dj1lkustyesuw" path="res://Art/circle.png" id="4_at2rt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ino31"]
-bg_color = Color(0.282353, 0.282353, 0.282353, 1)
+bg_color = Color(0.282353, 0.282353, 0.282353, 0)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -65,7 +65,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ino31")
 
 [node name="Sprite2D" type="Sprite2D" parent="CenterContainer/Panel2"]
-self_modulate = Color(0.380392, 0, 0, 1)
+self_modulate = Color(0.380392, 0, 0, 0.486275)
 position = Vector2(30, 30)
 texture = ExtResource("1_tdcvh")
 

@@ -256,6 +256,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_aih2h"]
 resource_name = "idle"
 length = 0.75
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -422,6 +423,8 @@ position = Vector2(-2, 15)
 shape = SubResource("RectangleShape2D_unxje")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gishx")

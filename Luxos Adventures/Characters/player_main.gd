@@ -124,6 +124,8 @@ func hurtByEnemy(area):
 	wasAttacked.emit(health,10)
 	hitted = true
 	health = health - 10
+	SignalBus.emit_signal("on_health_changed", self, -10)
+	
 	if(health <= 0 && character_state_machine.current_state != death_State):
 		emit_signal("zeroHealth")
 	hitEffect.play("Blink")
@@ -134,6 +136,7 @@ func hurtByEnemy(area):
 
 func heal():
 	if(inventory.potionSlot[0].item.name == "Small Potion"):
+		SignalBus.emit_signal("on_health_changed", self, 20)
 		wasAttacked.emit(health,-20)
 #		health = (health - maxHealth) + 20
 #		if(health >= 0):
@@ -148,6 +151,8 @@ func heal():
 		
 	if(inventory.potionSlot[0].item.name == "Medium Potion"):
 		wasAttacked.emit(health,-50)
+		SignalBus.emit_signal("on_health_changed", self, 50)
+		
 #		health = (health - maxHealth)+50
 		if(health+50 >= maxHealth):
 			health = maxHealth
@@ -161,6 +166,8 @@ func heal():
 		
 	if(inventory.potionSlot[0].item.name == "Great Potion"):
 		wasAttacked.emit(health,-100)
+		SignalBus.emit_signal("on_health_changed", self, 100)
+		
 		health = (health - maxHealth) + 100
 		if(health+100 >= maxHealth):
 			health = maxHealth

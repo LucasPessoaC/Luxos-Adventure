@@ -36,7 +36,7 @@ func _ready():
 	nav_agent.path_desired_distance = 50.0
 	path()
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 #Attack Animation distance
 	var dist = global_position - player.global_position
 	if(dist.x <= 40.0 && dist.x >= -40.0 && dist.y <= 40 && dist.y >= -40 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
@@ -56,8 +56,7 @@ func _physics_process(_delta: float):
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		
 		if dir && state_machine.check_if_can_move() && current_state == SKELETON_STATE.WALK:
-			velocity.x = dir.x * speed
-			velocity.y = dir.y * speed
+			velocity = dir * speed
 			if(velocity.x > 0):
 				sprite.flip_h = false
 				collision.position.x = -11.333

@@ -20,7 +20,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="Collectable" type="Area2D"]
-z_index = -1
+y_sort_enabled = true
 script = ExtResource("1_l8app")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -41,6 +41,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CenterContainer"]
 visible = false
+self_modulate = Color(1, 1, 1, 0.431373)
 show_behind_parent = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2

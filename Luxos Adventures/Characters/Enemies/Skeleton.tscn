@@ -262,9 +262,10 @@ graph_offset = Vector2(-136, 47)
 size = Vector2(18.6667, 28)
 
 [node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "attack_state", "nav_agent")]
+z_index = 1
 position = Vector2(273, 185)
 scale = Vector2(1.5, 1.5)
-collision_layer = 5
+collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -279,6 +280,7 @@ position = Vector2(5.25, 4.66666)
 shape = SubResource("RectangleShape2D_k0w5v")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_de217")
@@ -364,7 +366,7 @@ facing_rigth_position = Vector2(5, 2)
 [node name="LineOfsight" type="RayCast2D" parent="."]
 position = Vector2(3.33336, 13.3333)
 target_position = Vector2(150, 0)
-collision_mask = 3
+collision_mask = 2
 
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attacking" method="_on_animation_tree_animation_finished"]

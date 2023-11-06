@@ -404,18 +404,19 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-23, -27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f01i0"]
-size = Vector2(50, 62)
+size = Vector2(80, 62)
 
-[node name="Wizard" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "attack_state", "nav_agent")]
+[node name="Wizard" type="CharacterBody2D" node_paths=PackedStringArray("hit_state", "dead_state", "attack_state", "idle_state", "nav_agent") groups=["boss"]]
 collision_layer = 5
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2a0i0")
-speed = 130.0
+speed = 100.0
 hit_state = NodePath("CharacterStateMachine/HitState")
 dead_state = NodePath("CharacterStateMachine/Dead")
 attack_state = NodePath("CharacterStateMachine/AttackState")
+idle_state = NodePath("CharacterStateMachine/Idle")
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -424,7 +425,6 @@ shape = SubResource("RectangleShape2D_unxje")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gishx")
@@ -445,7 +445,7 @@ collision_layer = 7
 collision_mask = 3
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-1, 15)
+position = Vector2(5, 15)
 shape = SubResource("RectangleShape2D_f01i0")
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "facing_shape")]
@@ -456,6 +456,8 @@ enemy = NodePath("..")
 facing_shape = NodePath("AttackArea")
 
 [node name="AttackArea" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(1.27083, 0)
+scale = Vector2(0.697917, 1)
 build_mode = 1
 polygon = PackedVector2Array(65, 38, 75, 29, 95, 18, 106, -5, 112, -25, 102, -62, 82, -77, 72, -76, 63, -68, 78, -24, 75, -14, 67, -8, 60, -1, 55, 8, 52, 16, 52, 34, 61, 39)
 script = ExtResource("5_6c4wk")
@@ -464,7 +466,7 @@ facing_rigth_position = Vector2(5, 2)
 
 [node name="LineOfSight" type="RayCast2D" parent="."]
 position = Vector2(0, 35)
-target_position = Vector2(300, 0)
+target_position = Vector2(278, -1)
 collision_mask = 3
 
 [node name="Damageable" type="Node" parent="."]
@@ -490,13 +492,15 @@ return_state = NodePath("../Idle")
 wait_time = 0.1
 one_shot = true
 
-[node name="AttackState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "attack_state", "enemy")]
+[node name="AttackState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "attack_state", "hit_state", "enemy")]
 script = ExtResource("13_a324f")
 idle_state = NodePath("../Idle")
 attack_state = NodePath(".")
+hit_state = NodePath("../HitState")
 enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/AttackState"]
+wait_time = 6.5
 one_shot = true
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]

@@ -12,14 +12,16 @@ class_name Wizard
 @export var hit_state : State
 @export var dead_state : State
 @export var attack_state : State
+@export var idle_state : State
 
 @onready var attackBox = $Area2D/AttackArea
 @onready var los = $LineOfSight
 @export var nav_agent: NavigationAgent2D
 @export var player: Node2D
 
-@onready var sprite : Sprite2D = $Sprite2D
 
+@onready var sprite : Sprite2D = $Sprite2D
+@onready var timerAttack = $CharacterStateMachine/AttackState/Timer
 var player_spotted: bool = false
 
 signal facing_direction_changed(facing_right : bool)
@@ -50,13 +52,14 @@ func path():
 
 func _physics_process(delta):
 	var dist = global_position - player.global_position
-	if(dist.x <= 90.0 && dist.x >= -90.0 && dist.y <= 90 && dist.y >= -90 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
-		emit_signal("facing_direction_changed", !sprite.flip_h)
-		emit_signal("isInAttackArea", true)
-		state_machine.switch_states(attack_state)
-	else:
-		if(state_machine.current_state == attack_state ):
-			emit_signal("isInAttackArea", false)
+	if(timerAttack.is_stopped()):
+		if(dist.x <= 70.0 && dist.x >= -70.0 && dist.y <= 50 && dist.y >= -50 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
+			emit_signal("facing_direction_changed", !sprite.flip_h)
+			emit_signal("isInAttackArea", true)
+			state_machine.switch_states(attack_state)
+		else:
+			if(state_machine.current_state == attack_state ):
+				emit_signal("isInAttackArea", false)
 	
 	los.look_at(player.global_position)
 	checkPlayer()

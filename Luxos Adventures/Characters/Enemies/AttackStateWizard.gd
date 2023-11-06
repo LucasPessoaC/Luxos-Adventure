@@ -6,28 +6,33 @@ class_name AttackStateWizard
 @export var idle_animation_node : String = "idle"
 @export var idle_state: State
 @export var attack_state: State
+@export var hit_state: State
 @export var enemy : Wizard
-@onready var timer : Timer = $AttackTimer
+@onready var timer : Timer = $Timer
 @onready var a = get_parent()
 
-@onready var present : bool 
+@onready var present : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemy.connect("isInAttackArea", isInArea)
 
 func on_enter():
-	playback.travel(attack_animation_node)
+#	playback.travel(attack_animation_node)
 #	timer.start()
+	pass
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func state_process(_delta):
 #	&& playback.get_current_node() == "walk"
-	if(a.current_state == attack_state && playback.get_current_node() != "attack2"):
+	if(a.current_state == attack_state && playback.get_current_node() != "attack2" && timer.is_stopped()):
 		playback.travel(attack_animation_node)
 		velocity = Vector2.ZERO
 		character.velocity = Vector2.ZERO
+		if(timer.is_stopped()):
+			timer.start()
+		
 #		a.switch_states(idle_state)
 		
 
@@ -40,11 +45,6 @@ func isInArea(value : bool):
 		
 
 func _on_animation_tree_animation_finished(_anim_name):
-	if(present):
-		
-#		playback.start("attack1", true)
-		pass
-	else:
-		if(a.current_state == attack_state && _anim_name == "attack2"):
-			playback.travel(idle_animation_node)
-			a.switch_states(idle_state)
+	if(_anim_name == "attack2"):
+		playback.travel(idle_animation_node)
+		a.switch_states(idle_state)

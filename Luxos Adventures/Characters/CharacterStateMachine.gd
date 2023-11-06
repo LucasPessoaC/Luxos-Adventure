@@ -61,9 +61,11 @@ func on_state_interrupt_state(new_state : State):
 func _on_player_main_zero_health():
 	on_state_interrupt_state(deathState)
 	await $Death.dead()
-	emit_signal("dead")
+
 	
 
 
 func _on_animation_tree_animation_finished(anim_name):
 	animation = anim_name
+	if(anim_name == "Death"):
+		emit_signal("dead")

@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://bdonkoykgp7ns"]
+[gd_scene load_steps=4 format=3 uid="uid://bdonkoykgp7ns"]
+
+[ext_resource type="Script" path="res://UI/boss_healthbar.gd" id="1_psnp4"]
+[ext_resource type="Texture2D" uid="uid://d7hpekakv88y" path="res://Art/Hearts/PNG/health_bar/health_bar_decoration.png" id="1_s45sc"]
+[ext_resource type="Texture2D" uid="uid://cu7s6v4l8mdk8" path="res://Art/Hearts/PNG/health_bar/health_bar.png" id="2_rgdvn"]
 
 [node name="Boss Healthbar" type="Control"]
 layout_mode = 3
@@ -7,3 +11,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_psnp4")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 6.0
+offset_bottom = 160.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/Panel"]
+scale = Vector2(8.1875, 6.88235)
+texture = ExtResource("1_s45sc")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -46.0
+offset_right = 250.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("2_rgdvn")

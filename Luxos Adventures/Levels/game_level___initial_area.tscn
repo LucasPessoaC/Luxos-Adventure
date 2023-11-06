@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://d1mvmgncxe4mp"]
+[gd_scene load_steps=168 format=3 uid="uid://d1mvmgncxe4mp"]
 
 [ext_resource type="PackedScene" uid="uid://dl0sk1hax0s5n" path="res://Characters/player_main.tscn" id="1_bbgn8"]
 [ext_resource type="Script" path="res://Levels/game_level___initial_area.gd" id="1_tplx5"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://s86xgmcvoufq" path="res://UI/potion_gui.tscn" id="23_grrgm"]
 [ext_resource type="Script" path="res://Levels/nightAndDay.gd" id="24_eoojq"]
 [ext_resource type="PackedScene" uid="uid://xctge06diu6h" path="res://UI/transição.tscn" id="25_arr30"]
+[ext_resource type="PackedScene" uid="uid://bdonkoykgp7ns" path="res://UI/boss_healthbar.tscn" id="25_ivfcn"]
 [ext_resource type="PackedScene" uid="uid://cvwn03egf0al7" path="res://UI/interact_gui.tscn" id="25_lvhtc"]
 [ext_resource type="PackedScene" uid="uid://dge2rkyxwmbt1" path="res://Levels/door.tscn" id="26_8wqsn"]
 [ext_resource type="Script" path="res://Levels/Spawn Area.gd" id="30_dhdgv"]
@@ -2238,6 +2239,17 @@ mouse_filter = 2
 
 [node name="Transição" parent="CanvasLayer" instance=ExtResource("25_arr30")]
 mouse_filter = 2
+
+[node name="Boss Healthbar" parent="CanvasLayer" instance=ExtResource("25_ivfcn")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_top = -138.0
+offset_bottom = -138.0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
 
 [node name="door" parent="." instance=ExtResource("26_8wqsn")]
 position = Vector2(1935, 929)

@@ -43,6 +43,7 @@ signal potionChangedHeal
 func _ready():
 	update_animation_parameters(starting_direction)
 	damage.connect("on_hit", on_hit)
+	SignalBus.connect("updateBossBarDead", _on_character_state_machine_dead)
 	hitEffect.play("RESET")
 	
 func get_input():

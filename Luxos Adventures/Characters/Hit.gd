@@ -46,7 +46,8 @@ func on_damageable_hit(node : Node, damage_amount : int, knockback_direction : V
 			hitBox.queue_free()
 			col.queue_free()
 		emit_signal("interrupt_state", dead_state)
-		SignalBus.emit_signal("updateBossBarDead")
+		if(get_parent().get_parent().name == "Wizard"):
+			SignalBus.emit_signal("updateBossBarDead")
 		await dropItem()
 		playback.travel(dead_animation_node)
 		

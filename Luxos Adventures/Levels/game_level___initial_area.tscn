@@ -2112,7 +2112,7 @@ script = ExtResource("1_tplx5")
 [node name="Player_Main" parent="." node_paths=PackedStringArray("transionar") instance=ExtResource("1_bbgn8")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(1180, -882)
+position = Vector2(1775, 819)
 scale = Vector2(1.5, 1.5)
 move_speed = 150.0
 transionar = NodePath("../CanvasLayer/Transição")
@@ -2180,7 +2180,7 @@ layer_7/tile_data = PackedInt32Array()
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1180, -882)
+position = Vector2(1775, 819)
 scale = Vector2(1.5, 1.5)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

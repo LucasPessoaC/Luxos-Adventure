@@ -46,8 +46,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		if(state_machine.current_state == attack_state ):
 			emit_signal("isInAttackArea", false)
-		
-	
 	los.look_at(player.global_position)
 	checkPlayer()
 	if(player_spotted && state_machine.current_state != hit_state && state_machine.current_state != attack_state && state_machine.current_state != dead_state):
@@ -65,9 +63,6 @@ func _physics_process(_delta: float) -> void:
 				sprite.flip_h = true
 				collision.position.x = 5.3333
 				collisionHitBox.position.x = 5.3333
-				
-				
-		
 	else:
 		if(state_machine.current_state != hit_state && state_machine.current_state != attack_state && state_machine.current_state != dead_state):
 			velocity = Vector2.ZERO

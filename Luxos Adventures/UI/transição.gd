@@ -2,7 +2,7 @@ extends Control
 
 class_name transitor
 
-@export var scene_to_load: PackedScene = preload("res://UI/MainMenu.tscn")
+#@export var scene_to_load: PackedScene = preload("res://UI/MainMenu.tscn")
 
 @onready var texture = $TextureRect
 @onready var animation = $AnimationPlayer
@@ -21,6 +21,7 @@ func set_next_animation(fading_out: bool):
 
 func _on_animation_player_animation_finished(anim_name):
 	if(anim_name == "fade_out" ):
-#		get_tree().reload_current_scene()
+		get_tree().reload_current_scene()
+#		get_tree().unload_current_scene()
 		get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dtv7gthpxu26v"]
+[gd_scene load_steps=38 format=3 uid="uid://dtv7gthpxu26v"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/Skeleton.gd" id="1_2v8fp"]
 [ext_resource type="Texture2D" uid="uid://creq0hrqj4hbx" path="res://Art/Skeleton/Sprite Sheets/Skeleton Dead.png" id="1_acuyk"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://Characters/Enemies/Attacking.gd" id="10_3eor7"]
 [ext_resource type="Script" path="res://Characters/Enemies/WeaponArea.gd" id="11_bi720"]
 [ext_resource type="Script" path="res://Characters/Enemies/CollisionPolygon2D.gd" id="12_biwkb"]
+[ext_resource type="AudioStream" uid="uid://clvy5kxotyeyq" path="res://Audio/knife-slice-41231.mp3" id="13_kg1n2"]
+[ext_resource type="AudioStream" uid="uid://dreh4r3jq3oon" path="res://Audio/202091__spookymodem__falling-bones.wav" id="14_53dfj"]
+[ext_resource type="AudioStream" uid="uid://c8r1c5mpg2pe0" path="res://Audio/473526__kneeling__bones.mp3" id="15_cbafa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0w5v"]
 size = Vector2(16.1667, 26.6667)
@@ -367,6 +370,15 @@ facing_rigth_position = Vector2(5, 2)
 position = Vector2(3.33336, 13.3333)
 target_position = Vector2(150, 0)
 collision_mask = 2
+
+[node name="attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_kg1n2")
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_53dfj")
+
+[node name="walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_cbafa")
 
 [connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attacking" method="_on_animation_tree_animation_finished"]

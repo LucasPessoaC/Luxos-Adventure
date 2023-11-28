@@ -5,6 +5,7 @@ class_name IdleState
 @export var attack_state : State
 @export var run_state : State
 
+@onready var attack_1 = $"../../attack1"
 
 @export var attack_animation : String = "Attack_1"
 @export var run_animation : String = "run"
@@ -21,6 +22,8 @@ func attack():
 	character = $Player_Main
 	next_state = attack_state
 	playback.travel(attack_animation)
+	attack_1.pitch_scale = 1
+	attack_1.play()
 	velocity.x = -0
 	
 func run():

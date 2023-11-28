@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dl0sk1hax0s5n"]
+[gd_scene load_steps=61 format=3 uid="uid://dl0sk1hax0s5n"]
 
 [ext_resource type="Texture2D" uid="uid://cqbhojh3u6qrn" path="res://Art/Adventurer-1.5/adventurer-v1.5-Sheet.png" id="1_ipo6y"]
 [ext_resource type="Script" path="res://Characters/player_main.gd" id="1_kaixh"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://Characters/FacingCollision2D.gd" id="8_qgjye"]
 [ext_resource type="Script" path="res://Characters/Enemies/Damageable.gd" id="10_r8ejl"]
 [ext_resource type="Texture2D" uid="uid://dy53uelctshw6" path="res://Art/Kyrises_16x16_RPG_Icon_Pack_V1.3/Kyrise's 16x16 RPG Icon Pack - V1.3/light.png" id="12_j4yx5"]
+[ext_resource type="AudioStream" uid="uid://dl8mqgeqr4lfy" path="res://Audio/clean-fast-swooshaiff-14784.mp3" id="13_s5vb8"]
+[ext_resource type="AudioStream" uid="uid://dix8etqlm6obr" path="res://Audio/490951_nox_sound_footsteps_walk.wav" id="14_m84o6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmint"]
 size = Vector2(20, 18)
@@ -511,6 +513,12 @@ one_shot = true
 energy = 0.0
 shadow_enabled = true
 texture = ExtResource("12_j4yx5")
+
+[node name="attack1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_s5vb8")
+
+[node name="walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_m84o6")
 
 [connection signal="zeroHealth" from="." to="CharacterStateMachine" method="_on_player_main_zero_health"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine" method="_on_animation_tree_animation_finished"]

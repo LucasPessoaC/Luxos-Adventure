@@ -25,6 +25,7 @@ class_name Player
 @warning_ignore("integer_division")
 @onready var current_health : int = maxHealth/20
 @onready var health : int = maxHealth
+@onready var walk = $walk
 
 @onready var death_State = character_state_machine.find_child("Death", true, false)
 @onready var isHitted : bool
@@ -75,6 +76,7 @@ func get_input():
 		update_animation_parameters(velocity)
 		# Make sure diagonal movement isn't faster
 		velocity = velocity.normalized() * move_speed
+
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta):

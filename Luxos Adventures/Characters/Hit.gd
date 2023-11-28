@@ -19,6 +19,7 @@ class_name HitState
 					 preload("res://Collectables/copper_coin.tscn").instantiate(),
 					 preload("res://Collectables/silver_coin.tscn").instantiate(),
 					preload("res://Collectables/bone.tscn").instantiate(),]
+@onready var dead = $"../../dead"
 
 
 func _ready():
@@ -49,6 +50,10 @@ func on_damageable_hit(node : Node, damage_amount : int, knockback_direction : V
 		if(get_parent().get_parent().name == "Wizard"):
 			SignalBus.emit_signal("updateBossBarDead")
 		await dropItem()
+		
+#		if(get_parent().get_parent().name == "Skeleton"):
+		dead.seek(0.6)
+		dead.play()
 		playback.travel(dead_animation_node)
 		
 

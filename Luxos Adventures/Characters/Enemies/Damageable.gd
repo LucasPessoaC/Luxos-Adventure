@@ -2,6 +2,7 @@ extends Node
 class_name Damageable
 
 signal on_hit(node : Node, damage_taken : int, knockback_direction : Vector2)
+@onready var dead = $"../dead"
 
 @export var health : int = 100:
 	get: 
@@ -26,5 +27,4 @@ func hitCollided(damage: int):
 	
 func _on_animation_tree_animation_finished(anim_name):
 	if(anim_name == dead_animation_name):
-
 		get_parent().queue_free()

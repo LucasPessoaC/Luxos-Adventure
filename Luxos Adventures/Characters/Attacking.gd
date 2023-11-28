@@ -9,6 +9,7 @@ extends State
 
 @export var attack2_node : String = "Attack_2"
 @export var attack3_node : String = "Attack_3"
+@onready var attack_1 = $"../../attack1"
 
 
 @onready var timer : Timer = $Timer
@@ -28,6 +29,8 @@ func _on_animation_tree_animation_finished(anim_name):
 			playback.travel(return_animation_node)
 		else:
 			playback.travel(attack2_node)
+			attack_1.pitch_scale = 1.55
+			attack_1.play()
 		
 	if (anim_name == attack2_name):
 		if(timer.is_stopped()):
@@ -36,6 +39,8 @@ func _on_animation_tree_animation_finished(anim_name):
 			
 		else:
 			playback.travel(attack3_node)
+			attack_1.pitch_scale = 0.5
+			attack_1.play()
 			
 	if (anim_name == attack3_name):
 			timer.stop()

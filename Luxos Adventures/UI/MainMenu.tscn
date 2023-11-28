@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://rxf5hsqd47cb"]
+[gd_scene load_steps=9 format=3 uid="uid://rxf5hsqd47cb"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_cqplm"]
 [ext_resource type="PackedScene" uid="uid://d1mvmgncxe4mp" path="res://Levels/game_level___initial_area.tscn" id="2_ny5hq"]
 [ext_resource type="Texture2D" uid="uid://bovrmyk6hpuq" path="res://Sem título.png" id="3_8od7f"]
 [ext_resource type="FontFile" uid="uid://borsjp16bvrux" path="res://Fonts/NovaMono-Regular.ttf" id="4_alxo1"]
+[ext_resource type="AudioStream" uid="uid://dakuxtfegw18j" path="res://Audio/cinematic-cello-115667.mp3" id="5_dsa82"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqk3b"]
 bg_color = Color(0, 0, 0, 0.392157)
@@ -119,6 +120,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_lqk3b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_h2gh3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bw7h8")
 text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dsa82")
+autoplay = true
+mix_target = 1
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/NewGameButton" to="." method="_on_new_game_button_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/QuitButton" to="." method="_on_quit_button_button_up"]

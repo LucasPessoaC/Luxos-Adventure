@@ -21,6 +21,7 @@ enum SKELETON_STATE{IDLE, WALK}
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var states_machine = animation_tree.get("parameters/playback")
 @onready var timer = $TimerSkeleton
+@onready var walk = $walk
 
 signal facing_direction_changed(facing_right : bool)
 signal isInAttackArea(isPresent : bool)
@@ -42,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 	if(dist.x <= 40.0 && dist.x >= -40.0 && dist.y <= 40 && dist.y >= -40 && state_machine.current_state != attack_state && state_machine.current_state != hit_state && state_machine.current_state != dead_state):
 		emit_signal("facing_direction_changed", !sprite.flip_h)
 		emit_signal("isInAttackArea", true)
+		
 		state_machine.switch_states(attack_state)
 	else:
 		if(state_machine.current_state == attack_state ):
@@ -55,6 +57,9 @@ func _physics_process(_delta: float) -> void:
 		
 		if dir && state_machine.check_if_can_move() && current_state == SKELETON_STATE.WALK:
 			velocity = dir * speed
+			if(!walk.playing):
+				walk.play()
+				
 			if(velocity.x > 0):
 				sprite.flip_h = false
 				collision.position.x = -11.333

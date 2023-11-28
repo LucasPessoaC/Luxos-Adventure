@@ -9,6 +9,7 @@ class_name AttackState
 @export var enemy : Skeleton
 @onready var timer : Timer = $AttackTimer
 @onready var a = get_parent()
+@onready var attack = $"../../attack"
 
 @onready var present : bool 
 
@@ -17,14 +18,18 @@ func _ready():
 	enemy.connect("isInAttackArea", isInArea)
 
 func on_enter():
+	attack.play()
+	
 	playback.travel(attack_animation_node)
 #	timer.start()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func state_process(_delta):
+func _process(delta):
 #	&& playback.get_current_node() == "walk"
 	if(a.current_state == attack_state  ):
+#		attack.play()
+		
 		playback.travel(attack_animation_node)
 		velocity = Vector2.ZERO
 		character.velocity = Vector2.ZERO
